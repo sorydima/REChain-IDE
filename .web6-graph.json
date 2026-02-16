@@ -1,0 +1,1930 @@
+﻿{
+    "nodes":  [
+                  {
+                      "id":  ".",
+                      "label":  "ide"
+                  },
+                  {
+                      "id":  "docs",
+                      "label":  "docs"
+                  },
+                  {
+                      "id":  "rechain-ide",
+                      "label":  "rechain-ide"
+                  },
+                  {
+                      "id":  "requests",
+                      "label":  "requests"
+                  },
+                  {
+                      "id":  "schemas",
+                      "label":  "schemas"
+                  },
+                  {
+                      "id":  "scripts",
+                      "label":  "scripts"
+                  },
+                  {
+                      "id":  "ACCESSIBILITY_GUIDELINES.md",
+                      "label":  "ACCESSIBILITY_GUIDELINES.md"
+                  },
+                  {
+                      "id":  "AGENTS.md",
+                      "label":  "AGENTS.md"
+                  },
+                  {
+                      "id":  "analytics.yml",
+                      "label":  "analytics.yml"
+                  },
+                  {
+                      "id":  "API_DESIGN_GUIDELINES.md",
+                      "label":  "API_DESIGN_GUIDELINES.md"
+                  },
+                  {
+                      "id":  "API_DOCS.md",
+                      "label":  "API_DOCS.md"
+                  },
+                  {
+                      "id":  "CHANGELOG.md",
+                      "label":  "CHANGELOG.md"
+                  },
+                  {
+                      "id":  "CHARTER.md",
+                      "label":  "CHARTER.md"
+                  },
+                  {
+                      "id":  "CITATION.cff",
+                      "label":  "CITATION.cff"
+                  },
+                  {
+                      "id":  "CODE_OF_CONDUCT.md",
+                      "label":  "CODE_OF_CONDUCT.md"
+                  },
+                  {
+                      "id":  "CODING_STANDARDS.md",
+                      "label":  "CODING_STANDARDS.md"
+                  },
+                  {
+                      "id":  "COMMUNITY_GUIDELINES.md",
+                      "label":  "COMMUNITY_GUIDELINES.md"
+                  },
+                  {
+                      "id":  "COMPLIANCE.md",
+                      "label":  "COMPLIANCE.md"
+                  },
+                  {
+                      "id":  "CONTRIBUTING.md",
+                      "label":  "CONTRIBUTING.md"
+                  },
+                  {
+                      "id":  "COPYRIGHT",
+                      "label":  "COPYRIGHT"
+                  },
+                  {
+                      "id":  "DATA_MANAGEMENT.md",
+                      "label":  "DATA_MANAGEMENT.md"
+                  },
+                  {
+                      "id":  "docker-compose.yml",
+                      "label":  "docker-compose.yml"
+                  },
+                  {
+                      "id":  "Dockerfile.dev",
+                      "label":  "Dockerfile.dev"
+                  },
+                  {
+                      "id":  "GIT_SETUP_MASTER_REFERENCE.md",
+                      "label":  "GIT_SETUP_MASTER_REFERENCE.md"
+                  },
+                  {
+                      "id":  "go.work",
+                      "label":  "go.work"
+                  },
+                  {
+                      "id":  "go.work.sum",
+                      "label":  "go.work.sum"
+                  },
+                  {
+                      "id":  "GOVERNANCE.md",
+                      "label":  "GOVERNANCE.md"
+                  },
+                  {
+                      "id":  "LICENSE",
+                      "label":  "LICENSE"
+                  },
+                  {
+                      "id":  "Makefile",
+                      "label":  "Makefile"
+                  },
+                  {
+                      "id":  "MICROSERVICES_GUIDELINES.md",
+                      "label":  "MICROSERVICES_GUIDELINES.md"
+                  },
+                  {
+                      "id":  "NOTICE",
+                      "label":  "NOTICE"
+                  },
+                  {
+                      "id":  "PERFORMANCE_OPTIMIZATION.md",
+                      "label":  "PERFORMANCE_OPTIMIZATION.md"
+                  },
+                  {
+                      "id":  "PROJECT.json",
+                      "label":  "PROJECT.json"
+                  },
+                  {
+                      "id":  "PROJECT_MANAGEMENT.md",
+                      "label":  "PROJECT_MANAGEMENT.md"
+                  },
+                  {
+                      "id":  "README.md",
+                      "label":  "README.md"
+                  },
+                  {
+                      "id":  "ROADMAP.md",
+                      "label":  "ROADMAP.md"
+                  },
+                  {
+                      "id":  "SECURITY.md",
+                      "label":  "SECURITY.md"
+                  },
+                  {
+                      "id":  "TECHNICAL_DOCS.md",
+                      "label":  "TECHNICAL_DOCS.md"
+                  },
+                  {
+                      "id":  "TESTING_GUIDELINES.md",
+                      "label":  "TESTING_GUIDELINES.md"
+                  },
+                  {
+                      "id":  "THIRD_PARTY_NOTICES.md",
+                      "label":  "THIRD_PARTY_NOTICES.md"
+                  },
+                  {
+                      "id":  "TRANSLATION_GUIDELINES.md",
+                      "label":  "TRANSLATION_GUIDELINES.md"
+                  },
+                  {
+                      "id":  "TUTORIAL.md",
+                      "label":  "TUTORIAL.md"
+                  },
+                  {
+                      "id":  "USER_GUIDE.md",
+                      "label":  "USER_GUIDE.md"
+                  },
+                  {
+                      "id":  "VISION.md",
+                      "label":  "VISION.md"
+                  },
+                  {
+                      "id":  "docs\\adr",
+                      "label":  "adr"
+                  },
+                  {
+                      "id":  "docs\\ACCESSIBILITY.md",
+                      "label":  "ACCESSIBILITY.md"
+                  },
+                  {
+                      "id":  "docs\\ACCESSIBILITY_GUIDE.md",
+                      "label":  "ACCESSIBILITY_GUIDE.md"
+                  },
+                  {
+                      "id":  "docs\\ANALYTICS_METRICS.md",
+                      "label":  "ANALYTICS_METRICS.md"
+                  },
+                  {
+                      "id":  "docs\\api.md",
+                      "label":  "api.md"
+                  },
+                  {
+                      "id":  "docs\\appendix.md",
+                      "label":  "appendix.md"
+                  },
+                  {
+                      "id":  "docs\\architecture-decisions.md",
+                      "label":  "architecture-decisions.md"
+                  },
+                  {
+                      "id":  "docs\\architecture-diagram.txt",
+                      "label":  "architecture-diagram.txt"
+                  },
+                  {
+                      "id":  "docs\\ARCHITECTURE.md",
+                      "label":  "ARCHITECTURE.md"
+                  },
+                  {
+                      "id":  "docs\\audit.md",
+                      "label":  "audit.md"
+                  },
+                  {
+                      "id":  "docs\\BACKLOG.md",
+                      "label":  "BACKLOG.md"
+                  },
+                  {
+                      "id":  "docs\\BRANDING.md",
+                      "label":  "BRANDING.md"
+                  },
+                  {
+                      "id":  "docs\\business-continuity.md",
+                      "label":  "business-continuity.md"
+                  },
+                  {
+                      "id":  "docs\\changelog.md",
+                      "label":  "changelog.md"
+                  },
+                  {
+                      "id":  "docs\\ci.md",
+                      "label":  "ci.md"
+                  },
+                  {
+                      "id":  "docs\\cli.md",
+                      "label":  "cli.md"
+                  },
+                  {
+                      "id":  "docs\\CODEOWNERS",
+                      "label":  "CODEOWNERS"
+                  },
+                  {
+                      "id":  "docs\\COMMUNICATION.md",
+                      "label":  "COMMUNICATION.md"
+                  },
+                  {
+                      "id":  "docs\\compatibility.md",
+                      "label":  "compatibility.md"
+                  },
+                  {
+                      "id":  "docs\\compliance.md",
+                      "label":  "compliance.md"
+                  },
+                  {
+                      "id":  "docs\\constraints.md",
+                      "label":  "constraints.md"
+                  },
+                  {
+                      "id":  "docs\\CONTRIBUTING.md",
+                      "label":  "CONTRIBUTING.md"
+                  },
+                  {
+                      "id":  "docs\\data-retention.md",
+                      "label":  "data-retention.md"
+                  },
+                  {
+                      "id":  "docs\\decisions.md",
+                      "label":  "decisions.md"
+                  },
+                  {
+                      "id":  "docs\\deployment.md",
+                      "label":  "deployment.md"
+                  },
+                  {
+                      "id":  "docs\\dev-setup.md",
+                      "label":  "dev-setup.md"
+                  },
+                  {
+                      "id":  "docs\\disaster-recovery.md",
+                      "label":  "disaster-recovery.md"
+                  },
+                  {
+                      "id":  "docs\\examples.md",
+                      "label":  "examples.md"
+                  },
+                  {
+                      "id":  "docs\\faq.md",
+                      "label":  "faq.md"
+                  },
+                  {
+                      "id":  "docs\\features.md",
+                      "label":  "features.md"
+                  },
+                  {
+                      "id":  "docs\\GIT_CONFIGURATION_INDEX.md",
+                      "label":  "GIT_CONFIGURATION_INDEX.md"
+                  },
+                  {
+                      "id":  "docs\\glossary.md",
+                      "label":  "glossary.md"
+                  },
+                  {
+                      "id":  "docs\\I18N.md",
+                      "label":  "I18N.md"
+                  },
+                  {
+                      "id":  "docs\\incident-response.md",
+                      "label":  "incident-response.md"
+                  },
+                  {
+                      "id":  "docs\\index.md",
+                      "label":  "index.md"
+                  },
+                  {
+                      "id":  "docs\\INTERNATIONALIZATION_GUIDE.md",
+                      "label":  "INTERNATIONALIZATION_GUIDE.md"
+                  },
+                  {
+                      "id":  "docs\\legal.md",
+                      "label":  "legal.md"
+                  },
+                  {
+                      "id":  "docs\\license.md",
+                      "label":  "license.md"
+                  },
+                  {
+                      "id":  "docs\\links.md",
+                      "label":  "links.md"
+                  },
+                  {
+                      "id":  "docs\\logging.md",
+                      "label":  "logging.md"
+                  },
+                  {
+                      "id":  "docs\\maintenance.md",
+                      "label":  "maintenance.md"
+                  },
+                  {
+                      "id":  "docs\\MAINTENANCE_SCHEDULE.md",
+                      "label":  "MAINTENANCE_SCHEDULE.md"
+                  },
+                  {
+                      "id":  "docs\\manual-tests.md",
+                      "label":  "manual-tests.md"
+                  },
+                  {
+                      "id":  "docs\\models.md",
+                      "label":  "models.md"
+                  },
+                  {
+                      "id":  "docs\\onboarding.md",
+                      "label":  "onboarding.md"
+                  },
+                  {
+                      "id":  "docs\\overview.md",
+                      "label":  "overview.md"
+                  },
+                  {
+                      "id":  "docs\\ownership.md",
+                      "label":  "ownership.md"
+                  },
+                  {
+                      "id":  "docs\\PERFORMANCE.md",
+                      "label":  "PERFORMANCE.md"
+                  },
+                  {
+                      "id":  "docs\\PLATFORM_COMPARISON.md",
+                      "label":  "PLATFORM_COMPARISON.md"
+                  },
+                  {
+                      "id":  "docs\\privacy.md",
+                      "label":  "privacy.md"
+                  },
+                  {
+                      "id":  "docs\\project-glossary.md",
+                      "label":  "project-glossary.md"
+                  },
+                  {
+                      "id":  "docs\\QUALITY_ASSURANCE_PLAN.md",
+                      "label":  "QUALITY_ASSURANCE_PLAN.md"
+                  },
+                  {
+                      "id":  "docs\\quickstart.md",
+                      "label":  "quickstart.md"
+                  },
+                  {
+                      "id":  "docs\\README.md",
+                      "label":  "README.md"
+                  },
+                  {
+                      "id":  "docs\\release.md",
+                      "label":  "release.md"
+                  },
+                  {
+                      "id":  "docs\\requirements.md",
+                      "label":  "requirements.md"
+                  },
+                  {
+                      "id":  "docs\\REVIEW_CHECKLIST.md",
+                      "label":  "REVIEW_CHECKLIST.md"
+                  },
+                  {
+                      "id":  "docs\\risk-register.md",
+                      "label":  "risk-register.md"
+                  },
+                  {
+                      "id":  "docs\\roadmap.md",
+                      "label":  "roadmap.md"
+                  },
+                  {
+                      "id":  "docs\\runbook.md",
+                      "label":  "runbook.md"
+                  },
+                  {
+                      "id":  "docs\\scripts.md",
+                      "label":  "scripts.md"
+                  },
+                  {
+                      "id":  "docs\\SEARCH_OPTIMIZATION.md",
+                      "label":  "SEARCH_OPTIMIZATION.md"
+                  },
+                  {
+                      "id":  "docs\\security-testing.md",
+                      "label":  "security-testing.md"
+                  },
+                  {
+                      "id":  "docs\\security.md",
+                      "label":  "security.md"
+                  },
+                  {
+                      "id":  "docs\\status-script.md",
+                      "label":  "status-script.md"
+                  },
+                  {
+                      "id":  "docs\\structure.md",
+                      "label":  "structure.md"
+                  },
+                  {
+                      "id":  "docs\\style-guide.md",
+                      "label":  "style-guide.md"
+                  },
+                  {
+                      "id":  "docs\\STYLE_GUIDE_TEMPLATE.md",
+                      "label":  "STYLE_GUIDE_TEMPLATE.md"
+                  },
+                  {
+                      "id":  "docs\\support.md",
+                      "label":  "support.md"
+                  },
+                  {
+                      "id":  "docs\\SUSTAINABILITY.md",
+                      "label":  "SUSTAINABILITY.md"
+                  },
+                  {
+                      "id":  "docs\\telemetry.md",
+                      "label":  "telemetry.md"
+                  },
+                  {
+                      "id":  "docs\\terminology.md",
+                      "label":  "terminology.md"
+                  },
+                  {
+                      "id":  "docs\\third-party.md",
+                      "label":  "third-party.md"
+                  },
+                  {
+                      "id":  "docs\\threat-model.md",
+                      "label":  "threat-model.md"
+                  },
+                  {
+                      "id":  "docs\\todo.md",
+                      "label":  "todo.md"
+                  },
+                  {
+                      "id":  "docs\\VERSIONING_STRATEGY.md",
+                      "label":  "VERSIONING_STRATEGY.md"
+                  },
+                  {
+                      "id":  "docs\\vision.md",
+                      "label":  "vision.md"
+                  },
+                  {
+                      "id":  "docs\\web6-graph.md",
+                      "label":  "web6-graph.md"
+                  },
+                  {
+                      "id":  "docs\\adr\\0001-api-schemas.md",
+                      "label":  "0001-api-schemas.md"
+                  },
+                  {
+                      "id":  "docs\\adr\\0001-template.md",
+                      "label":  "0001-template.md"
+                  },
+                  {
+                      "id":  "docs\\adr\\0002-api-versioning.md",
+                      "label":  "0002-api-versioning.md"
+                  },
+                  {
+                      "id":  "docs\\adr\\0003-schema-validation.md",
+                      "label":  "0003-schema-validation.md"
+                  },
+                  {
+                      "id":  "docs\\adr\\0004-microservices-architecture.md",
+                      "label":  "0004-microservices-architecture.md"
+                  },
+                  {
+                      "id":  "docs\\adr\\0005-ai-model-selection.md",
+                      "label":  "0005-ai-model-selection.md"
+                  },
+                  {
+                      "id":  "docs\\adr\\0006-quantum-computing-integration.md",
+                      "label":  "0006-quantum-computing-integration.md"
+                  },
+                  {
+                      "id":  "docs\\adr\\README.md",
+                      "label":  "README.md"
+                  },
+                  {
+                      "id":  "rechain-ide\\agents",
+                      "label":  "agents"
+                  },
+                  {
+                      "id":  "rechain-ide\\cli",
+                      "label":  "cli"
+                  },
+                  {
+                      "id":  "rechain-ide\\cursor-integration",
+                      "label":  "cursor-integration"
+                  },
+                  {
+                      "id":  "rechain-ide\\distributed-cache",
+                      "label":  "distributed-cache"
+                  },
+                  {
+                      "id":  "rechain-ide\\kernel",
+                      "label":  "kernel"
+                  },
+                  {
+                      "id":  "rechain-ide\\local-models",
+                      "label":  "local-models"
+                  },
+                  {
+                      "id":  "rechain-ide\\orchestrator",
+                      "label":  "orchestrator"
+                  },
+                  {
+                      "id":  "rechain-ide\\quantum",
+                      "label":  "quantum"
+                  },
+                  {
+                      "id":  "rechain-ide\\rag",
+                      "label":  "rag"
+                  },
+                  {
+                      "id":  "rechain-ide\\shared",
+                      "label":  "shared"
+                  },
+                  {
+                      "id":  "rechain-ide\\vscode-extension",
+                      "label":  "vscode-extension"
+                  },
+                  {
+                      "id":  "rechain-ide\\web6-3d",
+                      "label":  "web6-3d"
+                  },
+                  {
+                      "id":  "rechain-ide\\windsrif-api",
+                      "label":  "windsrif-api"
+                  },
+                  {
+                      "id":  "rechain-ide\\agents\\cmd",
+                      "label":  "cmd"
+                  },
+                  {
+                      "id":  "rechain-ide\\agents\\go.mod",
+                      "label":  "go.mod"
+                  },
+                  {
+                      "id":  "rechain-ide\\agents\\README.md",
+                      "label":  "README.md"
+                  },
+                  {
+                      "id":  "rechain-ide\\agents\\cmd\\agent-compiler",
+                      "label":  "agent-compiler"
+                  },
+                  {
+                      "id":  "rechain-ide\\agents\\cmd\\agent-compiler\\main.go",
+                      "label":  "main.go"
+                  },
+                  {
+                      "id":  "rechain-ide\\cli\\cmd",
+                      "label":  "cmd"
+                  },
+                  {
+                      "id":  "rechain-ide\\cli\\go.mod",
+                      "label":  "go.mod"
+                  },
+                  {
+                      "id":  "rechain-ide\\cli\\cmd\\rechain",
+                      "label":  "rechain"
+                  },
+                  {
+                      "id":  "rechain-ide\\cli\\cmd\\rechain\\main.go",
+                      "label":  "main.go"
+                  },
+                  {
+                      "id":  "rechain-ide\\cursor-integration\\README.md",
+                      "label":  "README.md"
+                  },
+                  {
+                      "id":  "rechain-ide\\distributed-cache\\README.md",
+                      "label":  "README.md"
+                  },
+                  {
+                      "id":  "rechain-ide\\kernel\\cmd",
+                      "label":  "cmd"
+                  },
+                  {
+                      "id":  "rechain-ide\\kernel\\go.mod",
+                      "label":  "go.mod"
+                  },
+                  {
+                      "id":  "rechain-ide\\kernel\\README.md",
+                      "label":  "README.md"
+                  },
+                  {
+                      "id":  "rechain-ide\\kernel\\cmd\\kernel",
+                      "label":  "kernel"
+                  },
+                  {
+                      "id":  "rechain-ide\\kernel\\cmd\\kernel\\main.go",
+                      "label":  "main.go"
+                  },
+                  {
+                      "id":  "rechain-ide\\local-models\\README.md",
+                      "label":  "README.md"
+                  },
+                  {
+                      "id":  "rechain-ide\\orchestrator\\cmd",
+                      "label":  "cmd"
+                  },
+                  {
+                      "id":  "rechain-ide\\orchestrator\\internal",
+                      "label":  "internal"
+                  },
+                  {
+                      "id":  "rechain-ide\\orchestrator\\go.mod",
+                      "label":  "go.mod"
+                  },
+                  {
+                      "id":  "rechain-ide\\orchestrator\\README.md",
+                      "label":  "README.md"
+                  },
+                  {
+                      "id":  "rechain-ide\\orchestrator\\cmd\\orchctl",
+                      "label":  "orchctl"
+                  },
+                  {
+                      "id":  "rechain-ide\\orchestrator\\cmd\\orchestrator",
+                      "label":  "orchestrator"
+                  },
+                  {
+                      "id":  "rechain-ide\\orchestrator\\cmd\\orchctl\\main.go",
+                      "label":  "main.go"
+                  },
+                  {
+                      "id":  "rechain-ide\\orchestrator\\cmd\\orchctl\\README.md",
+                      "label":  "README.md"
+                  },
+                  {
+                      "id":  "rechain-ide\\orchestrator\\cmd\\orchestrator\\main.go",
+                      "label":  "main.go"
+                  },
+                  {
+                      "id":  "rechain-ide\\orchestrator\\internal\\merge.go",
+                      "label":  "merge.go"
+                  },
+                  {
+                      "id":  "rechain-ide\\orchestrator\\internal\\merge_test.go",
+                      "label":  "merge_test.go"
+                  },
+                  {
+                      "id":  "rechain-ide\\quantum\\cmd",
+                      "label":  "cmd"
+                  },
+                  {
+                      "id":  "rechain-ide\\quantum\\go.mod",
+                      "label":  "go.mod"
+                  },
+                  {
+                      "id":  "rechain-ide\\quantum\\README.md",
+                      "label":  "README.md"
+                  },
+                  {
+                      "id":  "rechain-ide\\quantum\\cmd\\quantum",
+                      "label":  "quantum"
+                  },
+                  {
+                      "id":  "rechain-ide\\quantum\\cmd\\quantum\\main.go",
+                      "label":  "main.go"
+                  },
+                  {
+                      "id":  "rechain-ide\\rag\\cmd",
+                      "label":  "cmd"
+                  },
+                  {
+                      "id":  "rechain-ide\\rag\\go.mod",
+                      "label":  "go.mod"
+                  },
+                  {
+                      "id":  "rechain-ide\\rag\\README.md",
+                      "label":  "README.md"
+                  },
+                  {
+                      "id":  "rechain-ide\\rag\\cmd\\rag",
+                      "label":  "rag"
+                  },
+                  {
+                      "id":  "rechain-ide\\rag\\cmd\\ragctl",
+                      "label":  "ragctl"
+                  },
+                  {
+                      "id":  "rechain-ide\\rag\\cmd\\rag\\main.go",
+                      "label":  "main.go"
+                  },
+                  {
+                      "id":  "rechain-ide\\rag\\cmd\\ragctl\\main.go",
+                      "label":  "main.go"
+                  },
+                  {
+                      "id":  "rechain-ide\\rag\\cmd\\ragctl\\README.md",
+                      "label":  "README.md"
+                  },
+                  {
+                      "id":  "rechain-ide\\shared\\logging",
+                      "label":  "logging"
+                  },
+                  {
+                      "id":  "rechain-ide\\shared\\go.mod",
+                      "label":  "go.mod"
+                  },
+                  {
+                      "id":  "rechain-ide\\shared\\logging\\logging.go",
+                      "label":  "logging.go"
+                  },
+                  {
+                      "id":  "rechain-ide\\vscode-extension\\cmd",
+                      "label":  "cmd"
+                  },
+                  {
+                      "id":  "rechain-ide\\vscode-extension\\extension",
+                      "label":  "extension"
+                  },
+                  {
+                      "id":  "rechain-ide\\vscode-extension\\go.mod",
+                      "label":  "go.mod"
+                  },
+                  {
+                      "id":  "rechain-ide\\vscode-extension\\README.md",
+                      "label":  "README.md"
+                  },
+                  {
+                      "id":  "rechain-ide\\vscode-extension\\cmd\\ide-client",
+                      "label":  "ide-client"
+                  },
+                  {
+                      "id":  "rechain-ide\\vscode-extension\\cmd\\ide-client\\main.go",
+                      "label":  "main.go"
+                  },
+                  {
+                      "id":  "rechain-ide\\vscode-extension\\extension\\src",
+                      "label":  "src"
+                  },
+                  {
+                      "id":  "rechain-ide\\vscode-extension\\extension\\package.json",
+                      "label":  "package.json"
+                  },
+                  {
+                      "id":  "rechain-ide\\vscode-extension\\extension\\README.md",
+                      "label":  "README.md"
+                  },
+                  {
+                      "id":  "rechain-ide\\vscode-extension\\extension\\tsconfig.json",
+                      "label":  "tsconfig.json"
+                  },
+                  {
+                      "id":  "rechain-ide\\vscode-extension\\extension\\src\\extension.ts",
+                      "label":  "extension.ts"
+                  },
+                  {
+                      "id":  "rechain-ide\\web6-3d\\cmd",
+                      "label":  "cmd"
+                  },
+                  {
+                      "id":  "rechain-ide\\web6-3d\\go.mod",
+                      "label":  "go.mod"
+                  },
+                  {
+                      "id":  "rechain-ide\\web6-3d\\README.md",
+                      "label":  "README.md"
+                  },
+                  {
+                      "id":  "rechain-ide\\web6-3d\\cmd\\web6-3d",
+                      "label":  "web6-3d"
+                  },
+                  {
+                      "id":  "rechain-ide\\web6-3d\\cmd\\web6-3d\\ui",
+                      "label":  "ui"
+                  },
+                  {
+                      "id":  "rechain-ide\\web6-3d\\cmd\\web6-3d\\main.go",
+                      "label":  "main.go"
+                  },
+                  {
+                      "id":  "rechain-ide\\web6-3d\\cmd\\web6-3d\\main_test.go",
+                      "label":  "main_test.go"
+                  },
+                  {
+                      "id":  "rechain-ide\\web6-3d\\cmd\\web6-3d\\ui\\app.js",
+                      "label":  "app.js"
+                  },
+                  {
+                      "id":  "rechain-ide\\web6-3d\\cmd\\web6-3d\\ui\\drawer.html",
+                      "label":  "drawer.html"
+                  },
+                  {
+                      "id":  "rechain-ide\\web6-3d\\cmd\\web6-3d\\ui\\index.html",
+                      "label":  "index.html"
+                  },
+                  {
+                      "id":  "rechain-ide\\web6-3d\\cmd\\web6-3d\\ui\\style.css",
+                      "label":  "style.css"
+                  },
+                  {
+                      "id":  "rechain-ide\\windsrif-api\\README.md",
+                      "label":  "README.md"
+                  },
+                  {
+                      "id":  "requests\\kernel.http",
+                      "label":  "kernel.http"
+                  },
+                  {
+                      "id":  "requests\\orchestrator.http",
+                      "label":  "orchestrator.http"
+                  },
+                  {
+                      "id":  "requests\\rag.http",
+                      "label":  "rag.http"
+                  },
+                  {
+                      "id":  "requests\\README.md",
+                      "label":  "README.md"
+                  },
+                  {
+                      "id":  "requests\\web6-3d.http",
+                      "label":  "web6-3d.http"
+                  },
+                  {
+                      "id":  "schemas\\artifact.json",
+                      "label":  "artifact.json"
+                  },
+                  {
+                      "id":  "schemas\\merge_result.json",
+                      "label":  "merge_result.json"
+                  },
+                  {
+                      "id":  "schemas\\model_result.json",
+                      "label":  "model_result.json"
+                  },
+                  {
+                      "id":  "schemas\\README.md",
+                      "label":  "README.md"
+                  },
+                  {
+                      "id":  "schemas\\schema_versioning.md",
+                      "label":  "schema_versioning.md"
+                  },
+                  {
+                      "id":  "schemas\\task_spec.json",
+                      "label":  "task_spec.json"
+                  },
+                  {
+                      "id":  "schemas\\task_status.json",
+                      "label":  "task_status.json"
+                  },
+                  {
+                      "id":  "schemas\\validate.md",
+                      "label":  "validate.md"
+                  },
+                  {
+                      "id":  "schemas\\validate.ps1",
+                      "label":  "validate.ps1"
+                  },
+                  {
+                      "id":  "scripts\\bump-version.sh",
+                      "label":  "bump-version.sh"
+                  },
+                  {
+                      "id":  "scripts\\check-go.ps1",
+                      "label":  "check-go.ps1"
+                  },
+                  {
+                      "id":  "scripts\\check-pr.sh",
+                      "label":  "check-pr.sh"
+                  },
+                  {
+                      "id":  "scripts\\create-branch.sh",
+                      "label":  "create-branch.sh"
+                  },
+                  {
+                      "id":  "scripts\\demo.ps1",
+                      "label":  "demo.ps1"
+                  },
+                  {
+                      "id":  "scripts\\dev.ps1",
+                      "label":  "dev.ps1"
+                  },
+                  {
+                      "id":  "scripts\\doctor.ps1",
+                      "label":  "doctor.ps1"
+                  },
+                  {
+                      "id":  "scripts\\e2e.ps1",
+                      "label":  "e2e.ps1"
+                  },
+                  {
+                      "id":  "scripts\\gen-graph.ps1",
+                      "label":  "gen-graph.ps1"
+                  },
+                  {
+                      "id":  "scripts\\install-hooks.sh",
+                      "label":  "install-hooks.sh"
+                  },
+                  {
+                      "id":  "scripts\\license-check.ps1",
+                      "label":  "license-check.ps1"
+                  },
+                  {
+                      "id":  "scripts\\README.md",
+                      "label":  "README.md"
+                  },
+                  {
+                      "id":  "scripts\\setup-repo.sh",
+                      "label":  "setup-repo.sh"
+                  },
+                  {
+                      "id":  "scripts\\status.ps1",
+                      "label":  "status.ps1"
+                  },
+                  {
+                      "id":  "scripts\\stop.ps1",
+                      "label":  "stop.ps1"
+                  },
+                  {
+                      "id":  "scripts\\validate.ps1",
+                      "label":  "validate.ps1"
+                  },
+                  {
+                      "id":  "scripts\\verify-setup.sh",
+                      "label":  "verify-setup.sh"
+                  }
+              ],
+    "edges":  [
+                  {
+                      "from":  ".",
+                      "to":  "docs"
+                  },
+                  {
+                      "from":  ".",
+                      "to":  "rechain-ide"
+                  },
+                  {
+                      "from":  ".",
+                      "to":  "requests"
+                  },
+                  {
+                      "from":  ".",
+                      "to":  "schemas"
+                  },
+                  {
+                      "from":  ".",
+                      "to":  "scripts"
+                  },
+                  {
+                      "from":  ".",
+                      "to":  "ACCESSIBILITY_GUIDELINES.md"
+                  },
+                  {
+                      "from":  ".",
+                      "to":  "AGENTS.md"
+                  },
+                  {
+                      "from":  ".",
+                      "to":  "analytics.yml"
+                  },
+                  {
+                      "from":  ".",
+                      "to":  "API_DESIGN_GUIDELINES.md"
+                  },
+                  {
+                      "from":  ".",
+                      "to":  "API_DOCS.md"
+                  },
+                  {
+                      "from":  ".",
+                      "to":  "CHANGELOG.md"
+                  },
+                  {
+                      "from":  ".",
+                      "to":  "CHARTER.md"
+                  },
+                  {
+                      "from":  ".",
+                      "to":  "CITATION.cff"
+                  },
+                  {
+                      "from":  ".",
+                      "to":  "CODE_OF_CONDUCT.md"
+                  },
+                  {
+                      "from":  ".",
+                      "to":  "CODING_STANDARDS.md"
+                  },
+                  {
+                      "from":  ".",
+                      "to":  "COMMUNITY_GUIDELINES.md"
+                  },
+                  {
+                      "from":  ".",
+                      "to":  "COMPLIANCE.md"
+                  },
+                  {
+                      "from":  ".",
+                      "to":  "CONTRIBUTING.md"
+                  },
+                  {
+                      "from":  ".",
+                      "to":  "COPYRIGHT"
+                  },
+                  {
+                      "from":  ".",
+                      "to":  "DATA_MANAGEMENT.md"
+                  },
+                  {
+                      "from":  ".",
+                      "to":  "docker-compose.yml"
+                  },
+                  {
+                      "from":  ".",
+                      "to":  "Dockerfile.dev"
+                  },
+                  {
+                      "from":  ".",
+                      "to":  "GIT_SETUP_MASTER_REFERENCE.md"
+                  },
+                  {
+                      "from":  ".",
+                      "to":  "go.work"
+                  },
+                  {
+                      "from":  ".",
+                      "to":  "go.work.sum"
+                  },
+                  {
+                      "from":  ".",
+                      "to":  "GOVERNANCE.md"
+                  },
+                  {
+                      "from":  ".",
+                      "to":  "LICENSE"
+                  },
+                  {
+                      "from":  ".",
+                      "to":  "Makefile"
+                  },
+                  {
+                      "from":  ".",
+                      "to":  "MICROSERVICES_GUIDELINES.md"
+                  },
+                  {
+                      "from":  ".",
+                      "to":  "NOTICE"
+                  },
+                  {
+                      "from":  ".",
+                      "to":  "PERFORMANCE_OPTIMIZATION.md"
+                  },
+                  {
+                      "from":  ".",
+                      "to":  "PROJECT.json"
+                  },
+                  {
+                      "from":  ".",
+                      "to":  "PROJECT_MANAGEMENT.md"
+                  },
+                  {
+                      "from":  ".",
+                      "to":  "README.md"
+                  },
+                  {
+                      "from":  ".",
+                      "to":  "ROADMAP.md"
+                  },
+                  {
+                      "from":  ".",
+                      "to":  "SECURITY.md"
+                  },
+                  {
+                      "from":  ".",
+                      "to":  "TECHNICAL_DOCS.md"
+                  },
+                  {
+                      "from":  ".",
+                      "to":  "TESTING_GUIDELINES.md"
+                  },
+                  {
+                      "from":  ".",
+                      "to":  "THIRD_PARTY_NOTICES.md"
+                  },
+                  {
+                      "from":  ".",
+                      "to":  "TRANSLATION_GUIDELINES.md"
+                  },
+                  {
+                      "from":  ".",
+                      "to":  "TUTORIAL.md"
+                  },
+                  {
+                      "from":  ".",
+                      "to":  "USER_GUIDE.md"
+                  },
+                  {
+                      "from":  ".",
+                      "to":  "VISION.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\adr"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\ACCESSIBILITY.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\ACCESSIBILITY_GUIDE.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\ANALYTICS_METRICS.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\api.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\appendix.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\architecture-decisions.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\architecture-diagram.txt"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\ARCHITECTURE.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\audit.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\BACKLOG.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\BRANDING.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\business-continuity.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\changelog.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\ci.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\cli.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\CODEOWNERS"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\COMMUNICATION.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\compatibility.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\compliance.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\constraints.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\CONTRIBUTING.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\data-retention.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\decisions.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\deployment.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\dev-setup.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\disaster-recovery.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\examples.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\faq.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\features.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\GIT_CONFIGURATION_INDEX.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\glossary.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\I18N.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\incident-response.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\index.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\INTERNATIONALIZATION_GUIDE.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\legal.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\license.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\links.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\logging.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\maintenance.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\MAINTENANCE_SCHEDULE.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\manual-tests.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\models.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\onboarding.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\overview.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\ownership.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\PERFORMANCE.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\PLATFORM_COMPARISON.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\privacy.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\project-glossary.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\QUALITY_ASSURANCE_PLAN.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\quickstart.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\README.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\release.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\requirements.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\REVIEW_CHECKLIST.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\risk-register.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\roadmap.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\runbook.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\scripts.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\SEARCH_OPTIMIZATION.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\security-testing.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\security.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\status-script.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\structure.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\style-guide.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\STYLE_GUIDE_TEMPLATE.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\support.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\SUSTAINABILITY.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\telemetry.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\terminology.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\third-party.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\threat-model.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\todo.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\VERSIONING_STRATEGY.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\vision.md"
+                  },
+                  {
+                      "from":  "docs",
+                      "to":  "docs\\web6-graph.md"
+                  },
+                  {
+                      "from":  "docs\\adr",
+                      "to":  "docs\\adr\\0001-api-schemas.md"
+                  },
+                  {
+                      "from":  "docs\\adr",
+                      "to":  "docs\\adr\\0001-template.md"
+                  },
+                  {
+                      "from":  "docs\\adr",
+                      "to":  "docs\\adr\\0002-api-versioning.md"
+                  },
+                  {
+                      "from":  "docs\\adr",
+                      "to":  "docs\\adr\\0003-schema-validation.md"
+                  },
+                  {
+                      "from":  "docs\\adr",
+                      "to":  "docs\\adr\\0004-microservices-architecture.md"
+                  },
+                  {
+                      "from":  "docs\\adr",
+                      "to":  "docs\\adr\\0005-ai-model-selection.md"
+                  },
+                  {
+                      "from":  "docs\\adr",
+                      "to":  "docs\\adr\\0006-quantum-computing-integration.md"
+                  },
+                  {
+                      "from":  "docs\\adr",
+                      "to":  "docs\\adr\\README.md"
+                  },
+                  {
+                      "from":  "rechain-ide",
+                      "to":  "rechain-ide\\agents"
+                  },
+                  {
+                      "from":  "rechain-ide",
+                      "to":  "rechain-ide\\cli"
+                  },
+                  {
+                      "from":  "rechain-ide",
+                      "to":  "rechain-ide\\cursor-integration"
+                  },
+                  {
+                      "from":  "rechain-ide",
+                      "to":  "rechain-ide\\distributed-cache"
+                  },
+                  {
+                      "from":  "rechain-ide",
+                      "to":  "rechain-ide\\kernel"
+                  },
+                  {
+                      "from":  "rechain-ide",
+                      "to":  "rechain-ide\\local-models"
+                  },
+                  {
+                      "from":  "rechain-ide",
+                      "to":  "rechain-ide\\orchestrator"
+                  },
+                  {
+                      "from":  "rechain-ide",
+                      "to":  "rechain-ide\\quantum"
+                  },
+                  {
+                      "from":  "rechain-ide",
+                      "to":  "rechain-ide\\rag"
+                  },
+                  {
+                      "from":  "rechain-ide",
+                      "to":  "rechain-ide\\shared"
+                  },
+                  {
+                      "from":  "rechain-ide",
+                      "to":  "rechain-ide\\vscode-extension"
+                  },
+                  {
+                      "from":  "rechain-ide",
+                      "to":  "rechain-ide\\web6-3d"
+                  },
+                  {
+                      "from":  "rechain-ide",
+                      "to":  "rechain-ide\\windsrif-api"
+                  },
+                  {
+                      "from":  "rechain-ide\\agents",
+                      "to":  "rechain-ide\\agents\\cmd"
+                  },
+                  {
+                      "from":  "rechain-ide\\agents",
+                      "to":  "rechain-ide\\agents\\go.mod"
+                  },
+                  {
+                      "from":  "rechain-ide\\agents",
+                      "to":  "rechain-ide\\agents\\README.md"
+                  },
+                  {
+                      "from":  "rechain-ide\\agents\\cmd",
+                      "to":  "rechain-ide\\agents\\cmd\\agent-compiler"
+                  },
+                  {
+                      "from":  "rechain-ide\\agents\\cmd\\agent-compiler",
+                      "to":  "rechain-ide\\agents\\cmd\\agent-compiler\\main.go"
+                  },
+                  {
+                      "from":  "rechain-ide\\cli",
+                      "to":  "rechain-ide\\cli\\cmd"
+                  },
+                  {
+                      "from":  "rechain-ide\\cli",
+                      "to":  "rechain-ide\\cli\\go.mod"
+                  },
+                  {
+                      "from":  "rechain-ide\\cli\\cmd",
+                      "to":  "rechain-ide\\cli\\cmd\\rechain"
+                  },
+                  {
+                      "from":  "rechain-ide\\cli\\cmd\\rechain",
+                      "to":  "rechain-ide\\cli\\cmd\\rechain\\main.go"
+                  },
+                  {
+                      "from":  "rechain-ide\\cursor-integration",
+                      "to":  "rechain-ide\\cursor-integration\\README.md"
+                  },
+                  {
+                      "from":  "rechain-ide\\distributed-cache",
+                      "to":  "rechain-ide\\distributed-cache\\README.md"
+                  },
+                  {
+                      "from":  "rechain-ide\\kernel",
+                      "to":  "rechain-ide\\kernel\\cmd"
+                  },
+                  {
+                      "from":  "rechain-ide\\kernel",
+                      "to":  "rechain-ide\\kernel\\go.mod"
+                  },
+                  {
+                      "from":  "rechain-ide\\kernel",
+                      "to":  "rechain-ide\\kernel\\README.md"
+                  },
+                  {
+                      "from":  "rechain-ide\\kernel\\cmd",
+                      "to":  "rechain-ide\\kernel\\cmd\\kernel"
+                  },
+                  {
+                      "from":  "rechain-ide\\kernel\\cmd\\kernel",
+                      "to":  "rechain-ide\\kernel\\cmd\\kernel\\main.go"
+                  },
+                  {
+                      "from":  "rechain-ide\\local-models",
+                      "to":  "rechain-ide\\local-models\\README.md"
+                  },
+                  {
+                      "from":  "rechain-ide\\orchestrator",
+                      "to":  "rechain-ide\\orchestrator\\cmd"
+                  },
+                  {
+                      "from":  "rechain-ide\\orchestrator",
+                      "to":  "rechain-ide\\orchestrator\\internal"
+                  },
+                  {
+                      "from":  "rechain-ide\\orchestrator",
+                      "to":  "rechain-ide\\orchestrator\\go.mod"
+                  },
+                  {
+                      "from":  "rechain-ide\\orchestrator",
+                      "to":  "rechain-ide\\orchestrator\\README.md"
+                  },
+                  {
+                      "from":  "rechain-ide\\orchestrator\\cmd",
+                      "to":  "rechain-ide\\orchestrator\\cmd\\orchctl"
+                  },
+                  {
+                      "from":  "rechain-ide\\orchestrator\\cmd",
+                      "to":  "rechain-ide\\orchestrator\\cmd\\orchestrator"
+                  },
+                  {
+                      "from":  "rechain-ide\\orchestrator\\cmd\\orchctl",
+                      "to":  "rechain-ide\\orchestrator\\cmd\\orchctl\\main.go"
+                  },
+                  {
+                      "from":  "rechain-ide\\orchestrator\\cmd\\orchctl",
+                      "to":  "rechain-ide\\orchestrator\\cmd\\orchctl\\README.md"
+                  },
+                  {
+                      "from":  "rechain-ide\\orchestrator\\cmd\\orchestrator",
+                      "to":  "rechain-ide\\orchestrator\\cmd\\orchestrator\\main.go"
+                  },
+                  {
+                      "from":  "rechain-ide\\orchestrator\\internal",
+                      "to":  "rechain-ide\\orchestrator\\internal\\merge.go"
+                  },
+                  {
+                      "from":  "rechain-ide\\orchestrator\\internal",
+                      "to":  "rechain-ide\\orchestrator\\internal\\merge_test.go"
+                  },
+                  {
+                      "from":  "rechain-ide\\quantum",
+                      "to":  "rechain-ide\\quantum\\cmd"
+                  },
+                  {
+                      "from":  "rechain-ide\\quantum",
+                      "to":  "rechain-ide\\quantum\\go.mod"
+                  },
+                  {
+                      "from":  "rechain-ide\\quantum",
+                      "to":  "rechain-ide\\quantum\\README.md"
+                  },
+                  {
+                      "from":  "rechain-ide\\quantum\\cmd",
+                      "to":  "rechain-ide\\quantum\\cmd\\quantum"
+                  },
+                  {
+                      "from":  "rechain-ide\\quantum\\cmd\\quantum",
+                      "to":  "rechain-ide\\quantum\\cmd\\quantum\\main.go"
+                  },
+                  {
+                      "from":  "rechain-ide\\rag",
+                      "to":  "rechain-ide\\rag\\cmd"
+                  },
+                  {
+                      "from":  "rechain-ide\\rag",
+                      "to":  "rechain-ide\\rag\\go.mod"
+                  },
+                  {
+                      "from":  "rechain-ide\\rag",
+                      "to":  "rechain-ide\\rag\\README.md"
+                  },
+                  {
+                      "from":  "rechain-ide\\rag\\cmd",
+                      "to":  "rechain-ide\\rag\\cmd\\rag"
+                  },
+                  {
+                      "from":  "rechain-ide\\rag\\cmd",
+                      "to":  "rechain-ide\\rag\\cmd\\ragctl"
+                  },
+                  {
+                      "from":  "rechain-ide\\rag\\cmd\\rag",
+                      "to":  "rechain-ide\\rag\\cmd\\rag\\main.go"
+                  },
+                  {
+                      "from":  "rechain-ide\\rag\\cmd\\ragctl",
+                      "to":  "rechain-ide\\rag\\cmd\\ragctl\\main.go"
+                  },
+                  {
+                      "from":  "rechain-ide\\rag\\cmd\\ragctl",
+                      "to":  "rechain-ide\\rag\\cmd\\ragctl\\README.md"
+                  },
+                  {
+                      "from":  "rechain-ide\\shared",
+                      "to":  "rechain-ide\\shared\\logging"
+                  },
+                  {
+                      "from":  "rechain-ide\\shared",
+                      "to":  "rechain-ide\\shared\\go.mod"
+                  },
+                  {
+                      "from":  "rechain-ide\\shared\\logging",
+                      "to":  "rechain-ide\\shared\\logging\\logging.go"
+                  },
+                  {
+                      "from":  "rechain-ide\\vscode-extension",
+                      "to":  "rechain-ide\\vscode-extension\\cmd"
+                  },
+                  {
+                      "from":  "rechain-ide\\vscode-extension",
+                      "to":  "rechain-ide\\vscode-extension\\extension"
+                  },
+                  {
+                      "from":  "rechain-ide\\vscode-extension",
+                      "to":  "rechain-ide\\vscode-extension\\go.mod"
+                  },
+                  {
+                      "from":  "rechain-ide\\vscode-extension",
+                      "to":  "rechain-ide\\vscode-extension\\README.md"
+                  },
+                  {
+                      "from":  "rechain-ide\\vscode-extension\\cmd",
+                      "to":  "rechain-ide\\vscode-extension\\cmd\\ide-client"
+                  },
+                  {
+                      "from":  "rechain-ide\\vscode-extension\\cmd\\ide-client",
+                      "to":  "rechain-ide\\vscode-extension\\cmd\\ide-client\\main.go"
+                  },
+                  {
+                      "from":  "rechain-ide\\vscode-extension\\extension",
+                      "to":  "rechain-ide\\vscode-extension\\extension\\src"
+                  },
+                  {
+                      "from":  "rechain-ide\\vscode-extension\\extension",
+                      "to":  "rechain-ide\\vscode-extension\\extension\\package.json"
+                  },
+                  {
+                      "from":  "rechain-ide\\vscode-extension\\extension",
+                      "to":  "rechain-ide\\vscode-extension\\extension\\README.md"
+                  },
+                  {
+                      "from":  "rechain-ide\\vscode-extension\\extension",
+                      "to":  "rechain-ide\\vscode-extension\\extension\\tsconfig.json"
+                  },
+                  {
+                      "from":  "rechain-ide\\vscode-extension\\extension\\src",
+                      "to":  "rechain-ide\\vscode-extension\\extension\\src\\extension.ts"
+                  },
+                  {
+                      "from":  "rechain-ide\\web6-3d",
+                      "to":  "rechain-ide\\web6-3d\\cmd"
+                  },
+                  {
+                      "from":  "rechain-ide\\web6-3d",
+                      "to":  "rechain-ide\\web6-3d\\go.mod"
+                  },
+                  {
+                      "from":  "rechain-ide\\web6-3d",
+                      "to":  "rechain-ide\\web6-3d\\README.md"
+                  },
+                  {
+                      "from":  "rechain-ide\\web6-3d\\cmd",
+                      "to":  "rechain-ide\\web6-3d\\cmd\\web6-3d"
+                  },
+                  {
+                      "from":  "rechain-ide\\web6-3d\\cmd\\web6-3d",
+                      "to":  "rechain-ide\\web6-3d\\cmd\\web6-3d\\ui"
+                  },
+                  {
+                      "from":  "rechain-ide\\web6-3d\\cmd\\web6-3d",
+                      "to":  "rechain-ide\\web6-3d\\cmd\\web6-3d\\main.go"
+                  },
+                  {
+                      "from":  "rechain-ide\\web6-3d\\cmd\\web6-3d",
+                      "to":  "rechain-ide\\web6-3d\\cmd\\web6-3d\\main_test.go"
+                  },
+                  {
+                      "from":  "rechain-ide\\web6-3d\\cmd\\web6-3d\\ui",
+                      "to":  "rechain-ide\\web6-3d\\cmd\\web6-3d\\ui\\app.js"
+                  },
+                  {
+                      "from":  "rechain-ide\\web6-3d\\cmd\\web6-3d\\ui",
+                      "to":  "rechain-ide\\web6-3d\\cmd\\web6-3d\\ui\\drawer.html"
+                  },
+                  {
+                      "from":  "rechain-ide\\web6-3d\\cmd\\web6-3d\\ui",
+                      "to":  "rechain-ide\\web6-3d\\cmd\\web6-3d\\ui\\index.html"
+                  },
+                  {
+                      "from":  "rechain-ide\\web6-3d\\cmd\\web6-3d\\ui",
+                      "to":  "rechain-ide\\web6-3d\\cmd\\web6-3d\\ui\\style.css"
+                  },
+                  {
+                      "from":  "rechain-ide\\windsrif-api",
+                      "to":  "rechain-ide\\windsrif-api\\README.md"
+                  },
+                  {
+                      "from":  "requests",
+                      "to":  "requests\\kernel.http"
+                  },
+                  {
+                      "from":  "requests",
+                      "to":  "requests\\orchestrator.http"
+                  },
+                  {
+                      "from":  "requests",
+                      "to":  "requests\\rag.http"
+                  },
+                  {
+                      "from":  "requests",
+                      "to":  "requests\\README.md"
+                  },
+                  {
+                      "from":  "requests",
+                      "to":  "requests\\web6-3d.http"
+                  },
+                  {
+                      "from":  "schemas",
+                      "to":  "schemas\\artifact.json"
+                  },
+                  {
+                      "from":  "schemas",
+                      "to":  "schemas\\merge_result.json"
+                  },
+                  {
+                      "from":  "schemas",
+                      "to":  "schemas\\model_result.json"
+                  },
+                  {
+                      "from":  "schemas",
+                      "to":  "schemas\\README.md"
+                  },
+                  {
+                      "from":  "schemas",
+                      "to":  "schemas\\schema_versioning.md"
+                  },
+                  {
+                      "from":  "schemas",
+                      "to":  "schemas\\task_spec.json"
+                  },
+                  {
+                      "from":  "schemas",
+                      "to":  "schemas\\task_status.json"
+                  },
+                  {
+                      "from":  "schemas",
+                      "to":  "schemas\\validate.md"
+                  },
+                  {
+                      "from":  "schemas",
+                      "to":  "schemas\\validate.ps1"
+                  },
+                  {
+                      "from":  "scripts",
+                      "to":  "scripts\\bump-version.sh"
+                  },
+                  {
+                      "from":  "scripts",
+                      "to":  "scripts\\check-go.ps1"
+                  },
+                  {
+                      "from":  "scripts",
+                      "to":  "scripts\\check-pr.sh"
+                  },
+                  {
+                      "from":  "scripts",
+                      "to":  "scripts\\create-branch.sh"
+                  },
+                  {
+                      "from":  "scripts",
+                      "to":  "scripts\\demo.ps1"
+                  },
+                  {
+                      "from":  "scripts",
+                      "to":  "scripts\\dev.ps1"
+                  },
+                  {
+                      "from":  "scripts",
+                      "to":  "scripts\\doctor.ps1"
+                  },
+                  {
+                      "from":  "scripts",
+                      "to":  "scripts\\e2e.ps1"
+                  },
+                  {
+                      "from":  "scripts",
+                      "to":  "scripts\\gen-graph.ps1"
+                  },
+                  {
+                      "from":  "scripts",
+                      "to":  "scripts\\install-hooks.sh"
+                  },
+                  {
+                      "from":  "scripts",
+                      "to":  "scripts\\license-check.ps1"
+                  },
+                  {
+                      "from":  "scripts",
+                      "to":  "scripts\\README.md"
+                  },
+                  {
+                      "from":  "scripts",
+                      "to":  "scripts\\setup-repo.sh"
+                  },
+                  {
+                      "from":  "scripts",
+                      "to":  "scripts\\status.ps1"
+                  },
+                  {
+                      "from":  "scripts",
+                      "to":  "scripts\\stop.ps1"
+                  },
+                  {
+                      "from":  "scripts",
+                      "to":  "scripts\\validate.ps1"
+                  },
+                  {
+                      "from":  "scripts",
+                      "to":  "scripts\\verify-setup.sh"
+                  }
+              ]
+}

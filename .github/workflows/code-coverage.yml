@@ -1,0 +1,55 @@
+# GitHub Code Coverage Workflow
+
+name: Code Coverage
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  code-coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.21'
+
+      - name: Run tests with coverage
+        run: |
+          cd rechain-ide
+          go test -coverprofile=coverage.out -covermode=atomic ./...
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          file: rechain-ide/coverage.out
+          flags: unittests
+          name: codecov-umbrella
+
+      - name: Generate coverage report
+        run: |
+          cd rechain-ide
+          go tool cover -func=coverage.out -o coverage-report.txt
+        continue-on-error: true
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-report
+          path: rechain-ide/coverage-report.txt
+
+      - name: Check coverage threshold
+        run: |
+          cd rechain-ide
+          COVERAGE=$(go tool cover -func=coverage.out | grep total | awk '{print substr($3, 1, length($3)-1)}')
+          if (( $(echo "$COVERAGE < 80" | bc -l) )); then
+            echo "Coverage is below 80%: $COVERAGE%"
+            exit 1
+          else
+            echo "Coverage is above 80%: $COVERAGE%"
+          fi

@@ -1,0 +1,40 @@
+# GitHub License Check Workflow
+
+name: License Check
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  license-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.21'
+
+      - name: Install license checker
+        run: go install github.com/google/go-licenses@latest
+
+      - name: Check licenses
+        run: |
+          cd rechain-ide
+          go-licenses check ./...
+
+      - name: Generate license report
+        run: |
+          cd rechain-ide
+          go-licenses report ./... > license-report.txt
+        continue-on-error: true
+
+      - name: Upload license report
+        uses: actions/upload-artifact@v3
+        with:
+          name: license-report
+          path: rechain-ide/license-report.txt

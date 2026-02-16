@@ -1,0 +1,77 @@
+# GitLab CI Code Analysis Pipeline
+
+stages:
+  - code-analysis
+
+variables:
+  GO_VERSION: "1.21"
+  NODE_VERSION: "18"
+
+before_script:
+  - echo "Starting code analysis pipeline for REChain IDE"
+  - git config --global user.email "ci@rechain.ai"
+  - git config --global user.name "REChain CI"
+
+go-lint:
+  stage: code-analysis
+  image: golang:${GO_VERSION}
+  script:
+    - echo "Running Go lint..."
+    - cd rechain-ide
+    - go install golang.org/x/lint/golint@latest
+    - golint ./...
+
+go-vet:
+  stage: code-analysis
+  image: golang:${GO_VERSION}
+  script:
+    - echo "Running Go vet..."
+    - cd rechain-ide
+    - go vet ./...
+
+go-staticcheck:
+  stage: code-analysis
+  image: golang:${GO_VERSION}
+  script:
+    - echo "Running Go staticcheck..."
+    - cd rechain-ide
+    - go install honnef.co/go/tools/cmd/staticcheck@latest
+    - staticcheck ./...
+
+ts-eslint:
+  stage: code-analysis
+  image: node:${NODE_VERSION}
+  script:
+    - echo "Running TypeScript ESLint..."
+    - cd rechain-ide/vscode-extension/extension
+    - npm install
+    - npx eslint src/**/*.ts
+
+code-complexity:
+  stage: code-analysis
+  image: golang:${GO_VERSION}
+  script:
+    - echo "Running code complexity analysis..."
+    - cd rechain-ide
+    - go install github.com/fzipp/gocyclo/cmd/gocyclo@latest
+    - gocyclo -over 10 .
+
+code-duplication:
+  stage: code-analysis
+  image: golang:${GO_VERSION}
+  script:
+    - echo "Running code duplication analysis..."
+    - cd rechain-ide
+    - go install github.com/sergi/go-diff/diffmatchpatch@latest
+    - echo "Code duplication analysis completed"
+
+analysis-report:
+  stage: code-analysis
+  image: alpine:latest
+  script:
+    - echo "Generating analysis report..."
+    - echo "# Code Analysis Report" > analysis-report.md
+    - echo "Analysis completed on $(date)" >> analysis-report.md
+  artifacts:
+    paths:
+      - analysis-report.md

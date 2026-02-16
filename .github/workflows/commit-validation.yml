@@ -1,0 +1,49 @@
+# GitHub Commit Message Validation Workflow
+
+name: Commit Message Validation
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  commit-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Validate commit messages
+        run: |
+          echo "Validating commit messages..."
+          failed=0
+          for commit in $(git rev-list ${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }}); do
+            message=$(git show -s --format=%s $commit)
+            echo "Checking commit: $message"
+            if [[ ! $message =~ ^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\(.+\))?:\ .+ ]]; then
+              echo "Invalid commit message: $message"
+              echo "Commit messages must follow the conventional commits format"
+              failed=1
+            fi
+          done
+          if [ $failed -eq 1 ]; then
+            echo "One or more commit messages do not follow the conventional commits format"
+            exit 1
+          fi
+
+      - name: Check commit message length
+        run: |
+          echo "Checking commit message length..."
+          failed=0
+          for commit in $(git rev-list ${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }}); do
+            message=$(git show -s --format=%s $commit)
+            if [ ${#message} -gt 72 ]; then
+              echo "Commit message too long (max 72 characters): $message"
+              failed=1
+            fi
+          done
+          if [ $failed -eq 1 ]; then
+            echo "One or more commit messages exceed the 72 character limit"
+            exit 1
+          fi

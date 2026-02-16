@@ -1,0 +1,13 @@
+# Git submodules configuration
+# This file will be used if the project includes submodules
+
+# Example submodule configuration:
+# [submodule "external/library"]
+#     path = external/library
+#     url = https://github.com/example/library.git
+#     branch = main
+
+# [submodule "external/tool"]
+#     path = external/tool
+#     url = https://github.com/example/tool.git
+#     branch = develop

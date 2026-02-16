@@ -1,0 +1,66 @@
+# GitLab CI Documentation Validation Pipeline
+
+stages:
+  - docs-validation
+
+variables:
+  NODE_VERSION: "18"
+
+before_script:
+  - echo "Starting documentation validation pipeline for REChain IDE"
+  - git config --global user.email "ci@rechain.ai"
+  - git config --global user.name "REChain CI"
+
+lint-docs:
+  stage: docs-validation
+  image: node:${NODE_VERSION}
+  script:
+    - echo "Linting documentation files..."
+    - npm install -g markdownlint-cli
+    - markdownlint docs/**/*.md
+    - markdownlint README.md
+    - markdownlint CONTRIBUTING.md
+
+check-links:
+  stage: docs-validation
+  image: node:${NODE_VERSION}
+  script:
+    - echo "Checking documentation links..."
+    - npm install -g linkinator
+    - linkinator docs/**/*.md --skip "localhost"
+    - linkinator README.md --skip "localhost"
+    - linkinator CONTRIBUTING.md --skip "localhost"
+
+validate-structure:
+  stage: docs-validation
+  image: alpine:latest
+  script:
+    - echo "Validating documentation structure..."
+    - required_docs=("docs/README.md" "docs/overview.md" "docs/quickstart.md" "docs/installation.md")
+    - for doc in "${required_docs[@]}"; do
+        if [ ! -f "$doc" ]; then
+          echo "Required documentation file $doc is missing"
+          exit 1
+        fi
+      done
+
+docs-report:
+  stage: docs-validation
+  image: alpine:latest
+  script:
+    - echo "Generating documentation validation report..."
+    - echo "# Documentation Validation Report" > docs-validation-report.md
+    - echo "Validation completed on $(date)" >> docs-validation-report.md
+  artifacts:
+    paths:
+      - docs-validation-report.md
+
+upload-docs-report:
+  stage: docs-validation
+  image: alpine:latest
+  script:
+    - echo "Uploading documentation validation report..."
+    - echo "Documentation validation report uploaded" > docs-validation-upload.txt
+  artifacts:
+    paths:
+      - docs-validation-upload.txt

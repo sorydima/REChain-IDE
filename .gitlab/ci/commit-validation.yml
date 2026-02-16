@@ -1,0 +1,49 @@
+# GitLab CI Commit Message Validation Pipeline
+
+stages:
+  - commit-validation
+
+before_script:
+  - echo "Starting commit message validation pipeline for REChain IDE"
+  - git config --global user.email "ci@rechain.ai"
+  - git config --global user.name "REChain CI"
+
+validate-commit-messages:
+  stage: commit-validation
+  image: alpine:latest
+  script:
+    - echo "Validating commit messages..."
+    - apk add --no-cache git
+    - failed=0
+    - for commit in $(git log --oneline $CI_COMMIT_BEFORE_SHA..$CI_COMMIT_SHA | cut -d' ' -f1); do
+        message=$(git show -s --format=%s $commit)
+        echo "Checking commit: $message"
+        if [[ ! $message =~ ^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\(.+\))?:\ .+ ]]; then
+          echo "Invalid commit message: $message"
+          echo "Commit messages must follow the conventional commits format"
+          failed=1
+        fi
+      done
+    - if [ $failed -eq 1 ]; then
+        echo "One or more commit messages do not follow the conventional commits format"
+        exit 1
+      fi
+
+check-commit-length:
+  stage: commit-validation
+  image: alpine:latest
+  script:
+    - echo "Checking commit message length..."
+    - apk add --no-cache git
+    - failed=0
+    - for commit in $(git log --oneline $CI_COMMIT_BEFORE_SHA..$CI_COMMIT_SHA | cut -d' ' -f1); do
+        message=$(git show -s --format=%s $commit)
+        if [ ${#message} -gt 72 ]; then
+          echo "Commit message too long (max 72 characters): $message"
+          failed=1
+        fi
+      done
+    - if [ $failed -eq 1 ]; then
+        echo "One or more commit messages exceed the 72 character limit"
+        exit 1
+      fi

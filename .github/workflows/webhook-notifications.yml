@@ -1,0 +1,33 @@
+name: Generic Webhook Notifications
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    types: [opened, closed, synchronize]
+  issues:
+    types: [opened, closed, reopened]
+  release:
+    types: [published]
+  workflow_run:
+    workflows: ["CI"]
+    types: [completed]
+
+jobs:
+  webhook:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Webhook Notification
+        uses: distributhor/workflow-webhook@v3
+        with:
+          webhook_url: ${{ secrets.WEBHOOK_URL }}
+          webhook_secret: ${{ secrets.WEBHOOK_SECRET }}
+          data: |
+            {
+              "event": "${{ github.event_name }}",
+              "repository": "${{ github.repository }}",
+              "actor": "${{ github.actor }}",
+              "ref": "${{ github.ref }}",
+              "sha": "${{ github.sha }}",
+              "workflow": "${{ github.workflow }}"
+            }

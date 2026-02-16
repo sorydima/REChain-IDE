@@ -1,0 +1,97 @@
+name: Slack Notifications
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    types: [opened, closed, merged]
+  issues:
+    types: [opened, closed, reopened]
+  release:
+    types: [published]
+  workflow_run:
+    workflows: ["CI", "Security Scan", "Automated Testing"]
+    types: [completed]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify Slack on Push
+        if: github.event_name == 'push'
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          channel: '#rechain-dev'
+          text: |
+            🚀 *Push to ${{ github.ref }}*
+            
+            *Repository:* ${{ github.repository }}
+            *Author:* ${{ github.actor }}
+            *Commit:* ${{ github.event.head_commit.message }}
+            *URL:* ${{ github.event.head_commit.url }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      - name: Notify Slack on PR
+        if: github.event_name == 'pull_request'
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          channel: '#rechain-prs'
+          text: |
+            🔀 *Pull Request ${{ github.event.action }}*
+            
+            *Title:* ${{ github.event.pull_request.title }}
+            *Author:* ${{ github.event.pull_request.user.login }}
+            *Branch:* ${{ github.event.pull_request.head.ref }} → ${{ github.event.pull_request.base.ref }}
+            *URL:* ${{ github.event.pull_request.html_url }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      - name: Notify Slack on Issue
+        if: github.event_name == 'issues'
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          channel: '#rechain-issues'
+          text: |
+            🎫 *Issue ${{ github.event.action }}*
+            
+            *Title:* ${{ github.event.issue.title }}
+            *Author:* ${{ github.event.issue.user.login }}
+            *Labels:* ${{ join(github.event.issue.labels.*.name, ', ') }}
+            *URL:* ${{ github.event.issue.html_url }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      - name: Notify Slack on Release
+        if: github.event_name == 'release'
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          channel: '#rechain-releases'
+          text: |
+            🎉 *New Release: ${{ github.event.release.tag_name }}*
+            
+            *Name:* ${{ github.event.release.name }}
+            *Author:* ${{ github.event.release.author.login }}
+            *URL:* ${{ github.event.release.html_url }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      - name: Notify Slack on Workflow Failure
+        if: github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'failure'
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          channel: '#rechain-alerts'
+          text: |
+            🚨 *Workflow Failed*
+            
+            *Workflow:* ${{ github.event.workflow_run.name }}
+            *Branch:* ${{ github.event.workflow_run.head_branch }}
+            *Commit:* ${{ github.event.workflow_run.head_sha }}
+            *URL:* ${{ github.event.workflow_run.html_url }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

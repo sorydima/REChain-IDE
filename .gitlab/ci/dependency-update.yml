@@ -1,0 +1,70 @@
+# GitLab CI Dependency Update Pipeline
+
+stages:
+  - update
+
+variables:
+  GO_VERSION: "1.21"
+  NODE_VERSION: "18"
+
+before_script:
+  - echo "Starting dependency update pipeline for REChain IDE"
+  - git config --global user.email "ci@rechain.ai"
+  - git config --global user.name "REChain CI"
+
+go-mod-tidy:
+  stage: update
+  image: golang:${GO_VERSION}
+  script:
+    - echo "Running go mod tidy..."
+    - cd rechain-ide
+    - go mod tidy
+    - git diff --exit-code go.mod go.sum || echo "Changes detected in Go modules"
+  artifacts:
+    reports:
+      dotenv: go-env.env
+
+npm-update:
+  stage: update
+  image: node:${NODE_VERSION}
+  script:
+    - echo "Running npm update..."
+    - cd rechain-ide/vscode-extension/extension
+    - npm update
+    - git diff --exit-code package.json package-lock.json || echo "Changes detected in npm packages"
+  artifacts:
+    reports:
+      dotenv: npm-env.env
+
+dependency-check:
+  stage: update
+  image: golang:${GO_VERSION}
+  script:
+    - echo "Checking for outdated dependencies..."
+    - go install golang.org/x/exp/cmd/gorelease@latest
+    - cd rechain-ide
+    - gorelease ./...
+  artifacts:
+    reports:
+      dotenv: dep-check.env
+
+update-branch:
+  stage: update
+  image: alpine:latest
+  before_script:
+    - apk add --no-cache git
+  script:
+    - echo "Creating update branch if needed..."
+    - git fetch origin
+    - git checkout -b dependency-updates-${CI_PIPELINE_ID} || git checkout dependency-updates-${CI_PIPELINE_ID}
+    - git add .
+    - |
+      if ! git diff --cached --exit-code; then
+        git commit -m "chore: update dependencies [skip ci]"
+        git push origin dependency-updates-${CI_PIPELINE_ID}
+        echo "Changes pushed to dependency-updates-${CI_PIPELINE_ID}"
+      else
+        echo "No changes to commit"
+      fi
+  only:
+    - schedules

@@ -1,0 +1,34 @@
+﻿{
+  "name": "rechain-ide",
+  "displayName": "REChain IDE",
+  "description": "REChain Quantum-CrossAI IDE Engine MVP",
+  "version": "0.0.1",
+  "publisher": "rechain",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": ["Other"],
+  "activationEvents": ["onCommand:rechain.submitTask", "onCommand:rechain.showMetrics"],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "rechain.submitTask",
+        "title": "REChain: Submit Task"
+      },
+      {
+        "command": "rechain.showMetrics",
+        "title": "REChain: Show Metrics"
+      }
+    ]
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "@types/vscode": "^1.85.0",
+    "@types/node": "^20.10.4"
+  }
+}

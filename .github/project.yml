@@ -1,0 +1,64 @@
+# Project Properties for REChain Quantum-CrossAI IDE Engine
+
+# Project metadata
+name: "REChain Quantum-CrossAI IDE Engine"
+description: "A quantum-crossAI powered IDE for blockchain development and smart contract creation"
+version: "0.1.0"
+
+# Repository properties
+repository:
+  type: git
+  url: https://github.com/rechain-ai/rechain-ide.git
+  
+# Keywords for discovery
+keywords:
+  - blockchain
+  - ide
+  - quantum
+  - ai
+  - smart-contracts
+  - ethereum
+  - solidity
+  - development-tools
+  - crossai
+  - rechain
+
+# Maintainers
+maintainers:
+  - name: "REChain Core Team"
+    email: "dev@rechain.ai"
+
+# License
+license: MIT
+license_url: https://github.com/rechain-ai/rechain-ide/blob/main/LICENSE
+
+# URLs
+homepage: https://rechain.ai
+documentation: https://rechain.ai/docs
+repository_url: https://github.com/rechain-ai/rechain-ide
+issues_url: https://github.com/rechain-ai/rechain-ide/issues
+wiki_url: https://github.com/rechain-ai/rechain-ide/wiki
+
+# Social/community
+social:
+  twitter: "@REChain_AI"
+  discord: "https://discord.gg/rechain"
+  forum: "https://github.com/rechain-ai/rechain-ide/discussions"
+
+# Badges (for README generation)
+badges:
+  - label: "ci"
+    message: "passing"
+    color: "brightgreen"
+  - label: "license"
+    message: "MIT"
+    color: "blue"
+  - label: "version"
+    message: "0.1.0"
+    color: "orange"
+  - label: "Go"
+    message: "1.21"
+    color: "00ADD8"
+  - label: "maintenance"
+    message: "actively developed"
+    color: "success"

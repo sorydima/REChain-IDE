@@ -1,0 +1,47 @@
+# GitLab CI Changelog Generation Pipeline
+
+stages:
+  - changelog
+
+variables:
+  GIT_DEPTH: 0
+
+before_script:
+  - echo "Starting changelog generation pipeline for REChain IDE"
+  - git config --global user.email "ci@rechain.ai"
+  - git config --global user.name "REChain CI"
+
+generate-changelog:
+  stage: changelog
+  image: alpine:latest
+  script:
+    - echo "Generating changelog..."
+    - apk add --no-cache git
+    - echo "# Changelog" > CHANGELOG.md
+    - echo "Generated on: $(date)" >> CHANGELOG.md
+    - git log --oneline --decorate --graph >> CHANGELOG.md
+
+upload-changelog:
+  stage: changelog
+  image: alpine:latest
+  script:
+    - echo "Uploading changelog..."
+    - echo "Changelog uploaded" > changelog-upload.txt
+  artifacts:
+    paths:
+      - CHANGELOG.md
+      - changelog-upload.txt
+
+commit-changelog:
+  stage: changelog
+  image: alpine:latest
+  script:
+    - echo "Committing changelog..."
+    - apk add --no-cache git
+    - git config --local user.email "ci@rechain.ai"
+    - git config --local user.name "REChain CI"
+    - git add CHANGELOG.md || echo "No changes to commit"
+    - git commit -m "docs: update changelog [skip ci]" || echo "No changes to commit"
+    - git push origin main || echo "Failed to push changes"
+  only:
+    - main

@@ -1,0 +1,51 @@
+# GitHub Releases Configuration
+# Configuration for automatic release note generation
+
+changelog:
+  exclude:
+    labels:
+      - ignore-for-release
+    authors:
+      - dependabot[bot]
+      - github-actions[bot]
+  categories:
+    - title: Breaking Changes 🛠
+      labels:
+        - breaking-change
+        - breaking
+    - title: New Features 🎉
+      labels:
+        - feat
+        - feature
+        - enhancement
+    - title: Bug Fixes 🐛
+      labels:
+        - fix
+        - bugfix
+        - bug
+    - title: Documentation 📚
+      labels:
+        - docs
+        - documentation
+    - title: Performance Improvements ⚡
+      labels:
+        - perf
+        - performance
+    - title: Security 🔒
+      labels:
+        - security
+    - title: Other Changes
+      labels:
+        - "*"
+
+# Release configuration
+template: |
+  ## What's Changed
+
+  $CHANGES
+
+  ## Contributors
+
+  $CONTRIBUTORS
+
+  **Full Changelog**: https://github.com/$REPOSITORY/compare/$PREVIOUS_TAG...$TAG

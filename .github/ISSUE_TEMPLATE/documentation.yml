@@ -1,0 +1,30 @@
+---
+name: Documentation Improvement
+about: Suggest improvements to documentation
+title: "[Docs] "
+labels: ["documentation", "triage"]
+assignees: ''
+
+---
+
+**Documentation Location**
+<!-- Where is the documentation that needs improvement? -->
+- [ ] README.md
+- [ ] CONTRIBUTING.md
+- [ ] API documentation
+- [ ] Code comments
+- [ ] Wiki
+- [ ] Other (specify below)
+
+**Current Issue**
+<!-- Describe what's wrong or missing -->
+
+**Suggested Improvement**
+<!-- What should be changed or added? -->
+
+**Additional Context**
+<!-- Add any other context about the documentation issue -->
+
+**Would you like to contribute this improvement?**
+- [ ] Yes, I can submit a PR for this
+- [ ] No, I'm suggesting for someone else to implement

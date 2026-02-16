@@ -1,0 +1,26 @@
+---
+name: Ideas
+about: Share and discuss new ideas and feature proposals
+title: "[Idea] "
+labels: ["ideas", "triage"]
+assignees: ''
+
+---
+
+**Idea Summary**
+<!-- Briefly describe your idea -->
+
+**Problem or Opportunity**
+<!-- What problem does this solve or what opportunity does it create? -->
+
+**Proposed Solution**
+<!-- Describe your proposed solution or approach -->
+
+**Benefits**
+<!-- Who would benefit from this and how? -->
+
+**Potential Challenges**
+<!-- What challenges or considerations should be kept in mind? -->
+
+**Related Issues**
+<!-- Link to any related issues or discussions -->

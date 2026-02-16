@@ -1,0 +1,53 @@
+# GitLab CI Code Formatting Pipeline
+
+stages:
+  - code-format
+
+variables:
+  GO_VERSION: "1.21"
+  NODE_VERSION: "18"
+
+before_script:
+  - echo "Starting code formatting pipeline for REChain IDE"
+  - git config --global user.email "ci@rechain.ai"
+  - git config --global user.name "REChain CI"
+
+format-go-code:
+  stage: code-format
+  image: golang:${GO_VERSION}
+  script:
+    - echo "Formatting Go code..."
+    - go install mvdan.cc/gofumpt@latest
+    - cd rechain-ide
+    - gofumpt -l -w .
+
+format-ts-code:
+  stage: code-format
+  image: node:${NODE_VERSION}
+  script:
+    - echo "Formatting TypeScript code..."
+    - npm install -g prettier
+    - cd rechain-ide/vscode-extension/extension
+    - prettier --write src/**/*.ts
+
+check-changes:
+  stage: code-format
+  image: alpine:latest
+  script:
+    - echo "Checking for formatting changes..."
+    - apk add --no-cache git
+    - git diff --exit-code || echo "Code formatting changes detected"
+
+commit-formatting:
+  stage: code-format
+  image: alpine:latest
+  script:
+    - echo "Committing formatted code..."
+    - apk add --no-cache git
+    - git config --local user.email "ci@rechain.ai"
+    - git config --local user.name "REChain CI"
+    - git add .
+    - git commit -m "style: format code [skip ci]" || echo "No changes to commit"
+    - git push origin main || echo "Failed to push changes"
+  only:
+    - main

@@ -1,0 +1,143 @@
+# Configuration for Label Sync - https://github.com/mheap/github-label-sync
+
+# Default labels for all repositories
+- name: bug
+  color: e11d21
+  description: Something isn't working
+- name: documentation
+  color: 0075ca
+  description: Improvements or additions to documentation
+- name: duplicate
+  color: cccccc
+  description: This issue or pull request already exists
+- name: enhancement
+  color: 84b6eb
+  description: New feature or request
+- name: good first issue
+  color: 7057ff
+  description: Good for newcomers
+- name: help wanted
+  color: 008672
+  description: Extra attention is needed
+- name: invalid
+  color: e11d21
+  description: This doesn't seem right
+- name: question
+  color: cc317c
+  description: Further information is requested
+- name: wontfix
+  color: ffffff
+  description: This will not be worked on
+
+# Priority labels
+- name: priority: critical
+  color: e11d21
+  description: Critical priority issues
+- name: priority: high
+  color: eb6420
+  description: High priority issues
+- name: priority: medium
+  color: fbca04
+  description: Medium priority issues
+- name: priority: low
+  color: 009800
+  description: Low priority issues
+
+# Type labels
+- name: type: bug
+  color: e11d21
+  description: Something isn't working
+- name: type: documentation
+  color: 0075ca
+  description: Improvements or additions to documentation
+- name: type: enhancement
+  color: 84b6eb
+  description: New feature or request
+- name: type: maintenance
+  color: fbca04
+  description: Maintenance work
+- name: type: question
+  color: cc317c
+  description: Further information is requested
+
+# Status labels
+- name: status: blocked
+  color: e11d21
+  description: Work is blocked
+- name: status: in progress
+  color: fbca04
+  description: Work is in progress
+- name: status: needs review
+  color: 009800
+  description: Needs review
+- name: status: ready
+  color: 006b75
+  description: Ready for implementation
+
+# Module labels
+- name: module: agents
+  color: 5319e7
+  description: Issues related to the agents module
+- name: module: cli
+  color: 5319e7
+  description: Issues related to the CLI module
+- name: module: kernel
+  color: 5319e7
+  description: Issues related to the kernel module
+- name: module: orchestrator
+  color: 5319e7
+  description: Issues related to the orchestrator module
+- name: module: quantum
+  color: 5319e7
+  description: Issues related to the quantum module
+- name: module: rag
+  color: 5319e7
+  description: Issues related to the RAG module
+- name: module: shared
+  color: 5319e7
+  description: Issues related to the shared module
+- name: module: vscode-extension
+  color: 5319e7
+  description: Issues related to the VS Code extension
+- name: module: web6-3d
+  color: 5319e7
+  description: Issues related to the Web6 3D module
+
+# Platform labels
+- name: platform: windows
+  color: 5319e7
+  description: Issues specific to Windows
+- name: platform: macos
+  color: 5319e7
+  description: Issues specific to macOS
+- name: platform: linux
+  color: 5319e7
+  description: Issues specific to Linux
+
+# Difficulty labels
+- name: difficulty: beginner
+  color: 009800
+  description: Good for newcomers
+- name: difficulty: intermediate
+  color: fbca04
+  description: Moderate difficulty
+- name: difficulty: advanced
+  color: e11d21
+  description: Advanced difficulty
+
+# Category labels
+- name: category: performance
+  color: 5319e7
+  description: Performance-related issues
+- name: category: security
+  color: e11d21
+  description: Security-related issues
+- name: category: accessibility
+  color: 009800
+  description: Accessibility-related issues
+- name: category: ui/ux
+  color: 5319e7
+  description: UI/UX-related issues
+- name: category: testing
+  color: 5319e7
+  description: Testing-related issues

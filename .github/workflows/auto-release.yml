@@ -1,0 +1,61 @@
+# GitHub Auto Release Workflow
+
+name: Auto Release
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.21'
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Build binaries
+        run: |
+          cd rechain-ide
+          mkdir -p release-assets
+          for dir in cmd/*/; do
+            if [ -d "$dir" ]; then
+              binary_name=$(basename $dir)
+              echo "Building $binary_name..."
+              GOOS=linux GOARCH=amd64 go build -o ../release-assets/${binary_name}-linux-amd64 ./$dir
+              GOOS=windows GOARCH=amd64 go build -o ../release-assets/${binary_name}-windows-amd64.exe ./$dir
+              GOOS=darwin GOARCH=amd64 go build -o ../release-assets/${binary_name}-darwin-amd64 ./$dir
+            fi
+          done
+
+      - name: Build VS Code extension
+        run: |
+          cd rechain-ide/vscode-extension/extension
+          npm install
+          npm run package
+
+      - name: Generate changelog
+        run: |
+          echo "# Changelog" > CHANGELOG.md
+          echo "## ${{ github.ref_name }}" >> CHANGELOG.md
+          echo "" >> CHANGELOG.md
+          git log --oneline $(git describe --tags --abbrev=0 ${{ github.ref_name }}^ 2>/dev/null || git rev-list --max-parents=0 HEAD)..${{ github.ref_name }} >> CHANGELOG.md
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            release-assets/*
+            rechain-ide/vscode-extension/extension/*.vsix
+          body_path: CHANGELOG.md
+          draft: false
+          prerelease: false

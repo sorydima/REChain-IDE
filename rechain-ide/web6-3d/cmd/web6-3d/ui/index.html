@@ -1,0 +1,158 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Web6 3D Viewer</title>
+  <link rel="stylesheet" href="/ui/style.css">
+</head>
+<body>
+  <h1>Web6 3D Viewer (Prototype)</h1>
+  <div id="controls">
+    <input id="search" placeholder="filter nodes">
+    <select id="mode">
+      <option value="tree">tree</option>
+      <option value="imports">imports</option>
+      <option value="imports_go_list">go list</option>
+    </select>
+    <select id="depth">
+      <option value="1">1-hop</option>
+      <option value="2">2-hop</option>
+      <option value="3">3-hop</option>
+    </select>
+    <select id="type">
+      <option value="all">all</option>
+      <option value="dir">dir</option>
+      <option value="file">file</option>
+      <option value="pkg">pkg</option>
+      <option value="unknown">unknown</option>
+    </select>
+    <span id="mode-indicator">mode: tree</span>
+    <button id="settings">settings</button>
+    <button id="refresh">refresh graph</button>
+    <button id="clear">clear cache</button>
+    <select id="task-state">
+      <option value="all">task: all states</option>
+      <option value="queued">queued</option>
+      <option value="running">running</option>
+      <option value="completed">completed</option>
+      <option value="failed">failed</option>
+      <option value="canceled">canceled</option>
+    </select>
+    <select id="task-merge">
+      <option value="all">merge: all</option>
+      <option value="policy_merge">policy_merge</option>
+      <option value="agent_compiler">agent_compiler</option>
+    </select>
+    <select id="task-parent">
+      <option value="all">parent: all</option>
+      <option value="yes">with parent</option>
+      <option value="no">without parent</option>
+    </select>
+    <select id="task-sort">
+      <option value="updated_desc">sort: updated desc</option>
+      <option value="updated_asc">updated asc</option>
+      <option value="quality_desc">quality desc</option>
+      <option value="quality_asc">quality asc</option>
+    </select>
+    <select id="replay-mode">
+      <option value="force-policy">replay: force-policy</option>
+      <option value="force-agent">force-agent</option>
+      <option value="force-agent-soft">force-agent-soft</option>
+    </select>
+    <button id="replay-btn">replay selected</button>
+    <select id="debug-scope">
+      <option value="all">debug: all</option>
+      <option value="task">debug: task-only</option>
+      <option value="global">debug: with global merge counters</option>
+    </select>
+    <button id="debug-refresh">refresh debug</button>
+    <button id="debug-copy">copy debug</button>
+    <button id="proxy-refresh">refresh proxy</button>
+    <button id="proxy-copy">copy proxy prom</button>
+    <select id="proxy-history-limit">
+      <option value="10">proxy history: 10</option>
+      <option value="20">proxy history: 20</option>
+      <option value="50">proxy history: 50</option>
+    </select>
+    <select id="proxy-history-format">
+      <option value="all">proxy format: all</option>
+      <option value="json">proxy format: json</option>
+      <option value="prom">proxy format: prom</option>
+    </select>
+    <button id="proxy-history-copy">copy proxy history prom</button>
+    <button id="proxy-history-reset">reset proxy history</button>
+    <button id="dashboard-copy">copy dashboard prom</button>
+    <button id="dashboard-web6-copy">copy web6 summary prom</button>
+    <select id="dashboard-web6-history-limit">
+      <option value="8">history: 8</option>
+      <option value="20">history: 20</option>
+      <option value="50">history: 50</option>
+    </select>
+    <select id="dashboard-web6-history-level">
+      <option value="all">level: all</option>
+      <option value="ok">ok</option>
+      <option value="warn">warn</option>
+      <option value="critical">critical</option>
+    </select>
+    <select id="dashboard-web6-history-source">
+      <option value="all">source: all</option>
+      <option value="alerts">alerts</option>
+      <option value="summary">summary</option>
+    </select>
+    <button id="dashboard-web6-history-copy">copy web6 history prom</button>
+    <button id="dashboard-web6-history-reset">reset web6 history</button>
+    <button id="quick-failed">quick: failed</button>
+    <button id="quick-replay">quick: replay</button>
+    <button id="quick-soft">quick: soft fallback</button>
+    <input id="compare-id" placeholder="compare task id">
+    <button id="compare-btn">compare tasks</button>
+  </div>
+  __DRAWER__
+  <canvas id="viewport" width="900" height="480"></canvas>
+  <div id="legend">
+    <span><span class="dot" style="background:#2c6"></span>node</span>
+    <span><span class="dot" style="background:var(--match-default)"></span>match</span>
+    <span><span class="dot" style="background:#0aa"></span>dir</span>
+    <span><span class="dot" style="background:#555"></span>file</span>
+    <span><span class="dot" style="background:#7a3"></span>pkg</span>
+    <span><span class="dot" style="background:var(--type-unknown)"></span>unknown</span>
+    <span title="match dir"><span class="dot" style="background:var(--match-dir)"></span>match dir</span>
+    <span title="match file"><span class="dot" style="background:var(--match-file)"></span>match file</span>
+    <span title="match pkg"><span class="dot" style="background:var(--match-pkg)"></span>match pkg</span>
+    <span title="match unknown"><span class="dot" style="background:var(--match-unknown)"></span>match unknown</span>
+    <span>modes: tree=folders, imports=local imports, go list=module deps</span>
+  </div>
+  <div id="cache" class="cache-panel">cache: loading...</div>
+  <div id="queue">Queue depth: loading...</div>
+  <div id="trace" class="trace-panel">Last task trace: loading...</div>
+  <div id="tasks" class="tasks-panel">Task explorer: loading...</div>
+  <div id="trace-details" class="trace-panel">Task trace details: click task in explorer...</div>
+  <div id="replay-chain" class="trace-panel">Replay chain: click task in explorer...</div>
+  <div id="debug-prom" class="trace-panel">Task debug metrics (prom): click task in explorer...</div>
+  <div id="debug-compare" class="trace-panel">Debug compare: select task + compare id...</div>
+  <div id="debug-compare-prom" class="trace-panel">Debug compare scrape preview (prom): select task + compare id...</div>
+  <div id="proxy-metrics" class="trace-panel">Proxy counters: loading...</div>
+  <div id="proxy-prom" class="trace-panel">Proxy counters scrape preview (prom): loading...</div>
+  <div id="proxy-history" class="trace-panel">Proxy history: loading...</div>
+  <div id="proxy-health" class="trace-panel">Proxy health: loading...</div>
+  <div id="proxy-alerts" class="trace-panel">Proxy alerts: loading...</div>
+  <div id="dashboard" class="trace-panel">Dashboard summary: loading...</div>
+  <div id="dashboard-web6" class="trace-panel">Orchestrator downstream web6: loading...</div>
+  <div id="dashboard-prom" class="trace-panel">Dashboard scrape preview (prom): loading...</div>
+  <div id="dashboard-web6-prom" class="trace-panel">Orchestrator web6 metrics (prom): loading...</div>
+  <div id="dashboard-web6-alerts" class="trace-panel">Orchestrator web6 alerts: loading...</div>
+  <div id="dashboard-web6-summary" class="trace-panel">Orchestrator web6 summary: loading...</div>
+  <div id="dashboard-web6-history" class="trace-panel">Orchestrator web6 alert history: loading...</div>
+  <script>
+    window.WEB6_COLORS = {
+      matchDefault: "__MATCH_DEFAULT__",
+      matchDir: "__MATCH_DIR__",
+      matchFile: "__MATCH_FILE__",
+      matchPkg: "__MATCH_PKG__",
+      matchUnknown: "__MATCH_UNKNOWN__",
+      typeUnknown: "__UNKNOWN_COLOR__"
+    };
+  </script>
+  <script src="/ui/app.js"></script>
+</body>
+</html>

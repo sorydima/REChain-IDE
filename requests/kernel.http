@@ -1,0 +1,4 @@
+﻿# Kernel run
+curl -X POST http://localhost:8082/run \
+  -H "Content-Type: application/json" \
+  -d '{"schema_version":"0.1.0","id":"exec_1","command":"echo","args":["hello"],"timeout_ms":1000}'

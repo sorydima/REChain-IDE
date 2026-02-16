@@ -1,0 +1,17 @@
+﻿{
+  "schema_version": "0.1.0",
+  "id": "task_123",
+  "type": "patch",
+  "input": "user prompt",
+  "context": [
+    {"type": "file", "path": "src/app.ts", "rev": "abc123"}
+  ],
+  "constraints": [
+    {"key": "max_tokens", "value": 4096},
+    {"key": "budget_usd", "value": 0.25}
+  ],
+  "metadata": {
+    "requester": "vscode",
+    "priority": "normal"
+  }
+}

@@ -1,0 +1,25 @@
+name: Backup
+
+on:
+  schedule:
+    - cron: '0 0 * * 0'  # Weekly on Sunday at midnight
+  workflow_dispatch:
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - name: Create backup
+      run: |
+        echo "Creating backup..."
+        tar -czf rechain-ide-backup-$(date +%Y%m%d).tar.gz .
+        
+    - name: Upload backup to releases
+      uses: actions/upload-artifact@v3
+      with:
+        name: rechain-ide-backup
+        path: rechain-ide-backup-*.tar.gz

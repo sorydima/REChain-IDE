@@ -1,0 +1,8 @@
+﻿{
+  "schema_version": "0.1.0",
+  "id": "task_123",
+  "state": "running",
+  "progress": 0.4,
+  "started_at": "2026-02-09T00:00:00Z",
+  "updated_at": "2026-02-09T00:10:00Z"
+}

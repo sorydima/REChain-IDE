@@ -1,0 +1,49 @@
+# Deploy stage jobs
+
+deploy:staging:
+  stage: deploy
+  environment:
+    name: staging
+    url: https://staging.rechain-ide.example.com
+  script:
+    - echo "Deploying to staging environment"
+    - echo "Deployment triggered for commit $CI_COMMIT_SHA"
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  needs:
+    - job: test:unit
+    - job: security:sast
+      optional: true
+
+deploy:production:
+  stage: deploy
+  environment:
+    name: production
+    url: https://rechain-ide.example.com
+  script:
+    - echo "Deploying to production environment"
+    - echo "Deployment triggered for tag $CI_COMMIT_TAG"
+  rules:
+    - if: $CI_COMMIT_TAG =~ /^v\d+\.\d+\.\d+$/
+  needs:
+    - job: test:unit
+    - job: security:sast
+    - job: build:docker
+  when: manual
+  allow_failure: false
+
+deploy:pages:
+  stage: deploy
+  image: node:18
+  script:
+    - npm ci --prefix docs || true
+    - npm run build --prefix docs || echo "No build script found"
+  artifacts:
+    paths:
+      - docs/public
+    expire_in: 1 week
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  needs:
+    - job: docs:build
+      optional: true

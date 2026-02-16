@@ -1,0 +1,58 @@
+name: Repository Metrics
+
+on:
+  schedule:
+    - cron: '0 0 * * 0'  # Weekly on Sunday
+  workflow_dispatch:
+
+jobs:
+  metrics:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Generate repository metrics
+        uses: lowlighter/metrics@latest
+        with:
+          filename: metrics.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+          base: header, activity, community, repositories, metadata
+          base_indepth: yes
+          
+          # Language metrics
+          plugin_languages: yes
+          plugin_languages_analysis_timeout: 15
+          plugin_languages_categories: markup, programming
+          plugin_languages_recent_categories: markup, programming
+          plugin_languages_sections: most-used, recently-used
+          
+          # Activity metrics
+          plugin_activity: yes
+          plugin_activity_limit: 5
+          plugin_activity_days: 14
+          plugin_activity_filter: issue, pr, release, fork, review, wiki
+
+      - name: Upload metrics
+        uses: actions/upload-artifact@v3
+        with:
+          name: metrics
+          path: metrics.svg
+
+  pr-metrics:
+    runs-on: ubuntu-latest
+    steps:
+      - name: PR Metrics
+        uses: github/issue-metrics@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          search_query: 'repo:${{ github.repository }} is:pr created:>${{ github.event.repository.created_at }}'
+          output_file: 'pr-metrics.md'
+
+      - name: Upload PR metrics
+        uses: actions/upload-artifact@v3
+        with:
+          name: pr-metrics
+          path: pr-metrics.md

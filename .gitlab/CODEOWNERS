@@ -1,0 +1,53 @@
+# GitLab Code Owners
+# This file defines who owns which parts of the codebase for merge request approval
+
+# Default owners for everything in the repository
+* @rechain-ai/maintainers
+
+# Core IDE module
+rechain-ide/ @rechain-ai/core-team @rechain-ai/maintainers
+rechain-ide/cmd/ @rechain-ai/core-team
+rechain-ide/internal/ @rechain-ai/core-team
+
+# UI components (when added)
+rechain-ide/ui/ @rechain-ai/frontend-team
+rechain-ide/web/ @rechain-ai/frontend-team
+
+# API and backend
+rechain-ide/api/ @rechain-ai/backend-team
+rechain-ide/pkg/ @rechain-ai/backend-team
+
+# Documentation
+docs/ @rechain-ai/docs-team @rechain-ai/maintainers
+*.md @rechain-ai/docs-team
+
+# CI/CD configuration
+.github/ @rechain-ai/devops-team
+.gitlab/ @rechain-ai/devops-team
+.gitlab-ci.yml @rechain-ai/devops-team
+
+# Build and deployment scripts
+scripts/ @rechain-ai/devops-team
+Makefile @rechain-ai/devops-team
+Dockerfile* @rechain-ai/devops-team
+docker-compose.yml @rechain-ai/devops-team
+
+# Security-related files
+SECURITY.md @rechain-ai/security-team @rechain-ai/maintainers
+.gitlab/security/ @rechain-ai/security-team
+.github/workflows/security* @rechain-ai/security-team
+
+# Configuration files
+.gitattributes @rechain-ai/devops-team
+.gitignore @rechain-ai/devops-team
+.editorconfig @rechain-ai/devops-team
+
+# Testing
+test/ @rechain-ai/qa-team
+*_test.go @rechain-ai/qa-team
+
+# Legal and governance
+LICENSE @rechain-ai/legal
+COPYRIGHT @rechain-ai/legal
+CODE_OF_CONDUCT.md @rechain-ai/legal
+GOVERNANCE.md @rechain-ai/legal

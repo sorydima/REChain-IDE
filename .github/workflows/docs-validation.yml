@@ -1,0 +1,60 @@
+# GitHub Documentation Validation Workflow
+
+name: Documentation Validation
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  docs-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install documentation tools
+        run: |
+          npm install -g markdownlint-cli
+          npm install -g linkinator
+
+      - name: Lint documentation files
+        run: |
+          markdownlint docs/**/*.md
+          markdownlint README.md
+          markdownlint CONTRIBUTING.md
+
+      - name: Check documentation links
+        run: |
+          linkinator docs/**/*.md --skip "localhost"
+          linkinator README.md --skip "localhost"
+          linkinator CONTRIBUTING.md --skip "localhost"
+
+      - name: Validate documentation structure
+        run: |
+          echo "Validating documentation structure..."
+          required_docs=("docs/README.md" "docs/overview.md" "docs/quickstart.md" "docs/installation.md")
+          for doc in "${required_docs[@]}"; do
+            if [ ! -f "$doc" ]; then
+              echo "Required documentation file $doc is missing"
+              exit 1
+            fi
+          done
+
+      - name: Generate documentation report
+        run: |
+          echo "# Documentation Validation Report" > docs-validation-report.md
+          echo "Validation completed on $(date)" >> docs-validation-report.md
+        continue-on-error: true
+
+      - name: Upload documentation report
+        uses: actions/upload-artifact@v3
+        with:
+          name: docs-validation-report
+          path: docs-validation-report.md

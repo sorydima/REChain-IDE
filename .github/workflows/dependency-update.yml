@@ -1,0 +1,48 @@
+name: Dependency Update
+
+on:
+  schedule:
+    - cron: '0 2 * * 1'  # Weekly on Monday at 2 AM
+  workflow_dispatch:
+
+jobs:
+  dependency-update:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Go
+      uses: actions/setup-go@v3
+      with:
+        go-version: 1.21
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+
+    - name: Update Go dependencies
+      run: |
+        cd rechain-ide
+        for module in agents cli kernel orchestrator quantum rag shared vscode-extension web6-3d; do
+          echo "Updating dependencies for $module...";
+          cd $module;
+          go get -u ./...;
+          go mod tidy;
+          cd ..;
+        done
+
+    - name: Update Node.js dependencies
+      run: |
+        cd rechain-ide/vscode-extension/extension
+        npm update
+
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        commit-message: "chore: update dependencies"
+        title: "chore: update dependencies"
+        body: "This pull request updates project dependencies to their latest versions."
+        branch: dependency-update
+        delete-branch: true

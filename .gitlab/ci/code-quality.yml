@@ -1,0 +1,56 @@
+# GitLab CI Code Quality Pipeline
+
+stages:
+  - quality
+
+variables:
+  GO_VERSION: "1.21"
+  NODE_VERSION: "18"
+
+before_script:
+  - echo "Starting code quality pipeline for REChain IDE"
+  - git config --global user.email "ci@rechain.ai"
+  - git config --global user.name "REChain CI"
+
+go-fmt:
+  stage: quality
+  image: golang:${GO_VERSION}
+  script:
+    - echo "Running Go fmt..."
+    - cd rechain-ide
+    - go fmt ./...
+
+go-vet:
+  stage: quality
+  image: golang:${GO_VERSION}
+  script:
+    - echo "Running Go vet..."
+    - cd rechain-ide
+    - go vet ./...
+
+go-lint:
+  stage: quality
+  image: golang:${GO_VERSION}
+  script:
+    - echo "Running Go lint..."
+    - go install golang.org/x/lint/golint@latest
+    - cd rechain-ide
+    - golint ./...
+
+go-staticcheck:
+  stage: quality
+  image: golang:${GO_VERSION}
+  script:
+    - echo "Running Go staticcheck..."
+    - go install honnef.co/go/tools/cmd/staticcheck@latest
+    - cd rechain-ide
+    - staticcheck ./...
+
+ts-lint:
+  stage: quality
+  image: node:${NODE_VERSION}
+  script:
+    - echo "Running TypeScript lint..."
+    - cd rechain-ide/vscode-extension/extension
+    - npm install -g eslint
+    - npx eslint src/**/*.ts

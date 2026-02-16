@@ -1,0 +1,49 @@
+#!/bin/sh
+# commit-msg hook - validates commit message format
+# To install: copy this file to .git/hooks/commit-msg and make it executable
+
+COMMIT_MSG_FILE=$1
+COMMIT_SOURCE=$2
+
+# Skip validation for merge commits, fixup commits, etc.
+if [ -n "$COMMIT_SOURCE" ]; then
+    exit 0
+fi
+
+# Read the commit message (excluding comments)
+COMMIT_MSG=$(grep -v '^#' "$COMMIT_MSG_FILE" | head -n 1)
+
+# Check if the message follows conventional commits format
+# Format: type(scope): subject or type: subject
+CONVENTIONAL_COMMIT_REGEX='^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\([a-z-]+\))?: .{1,100}$'
+
+if ! echo "$COMMIT_MSG" | grep -qE "$CONVENTIONAL_COMMIT_REGEX"; then
+    echo "Error: Commit message does not follow conventional commits format."
+    echo ""
+    echo "Expected format: <type>[(scope)]: <subject>"
+    echo ""
+    echo "Types:"
+    echo "  feat:     A new feature"
+    echo "  fix:      A bug fix"
+    echo "  docs:     Documentation only changes"
+    echo "  style:    Code style changes (formatting, etc.)"
+    echo "  refactor: Code refactoring"
+    echo "  perf:     Performance improvements"
+    echo "  test:     Adding or updating tests"
+    echo "  build:    Build system changes"
+    echo "  ci:       CI/CD changes"
+    echo "  chore:    Other changes"
+    echo "  revert:   Revert a previous commit"
+    echo ""
+    echo "Example: feat(auth): add login functionality"
+    exit 1
+fi
+
+# Check message length (first line should be <= 72 characters)
+FIRST_LINE_LENGTH=$(echo "$COMMIT_MSG" | wc -c)
+if [ "$FIRST_LINE_LENGTH" -gt 73 ]; then
+    echo "Warning: Commit message subject is longer than 72 characters."
+    echo "Consider shortening the subject line."
+fi
+
+exit 0

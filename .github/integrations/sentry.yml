@@ -1,0 +1,30 @@
+# Sentry Configuration
+# Error tracking and performance monitoring
+
+# DSN should be set in environment variable: SENTRY_DSN
+# Or in GitHub Secret: SENTRY_DSN
+
+defaults:
+  project: rechain-ide
+  org: rechain-ai
+
+# Release configuration
+release:
+  version: ${GITHUB_SHA}
+  version_file: ./rechain-ide/cmd/rechain-ide/main.go
+
+# Performance monitoring
+performance:
+  enable: true
+  traces_sample_rate: 0.1
+
+# Error filtering
+filter:
+  exclude:
+    - "*test*"
+    - "*/vendor/*"
+    - "*/docs/*"
+
+# Source maps (if applicable for frontend)
+sourcemaps:
+  files: ./dist/**/*.js.map

@@ -1,0 +1,35 @@
+# GitHub Discussions Configuration
+
+# Categories for discussions
+categories:
+  - name: "Announcements"
+    description: "Official announcements from the REChain team"
+    emoji: "📢"
+    
+  - name: "General"
+    description: "General discussion about the REChain IDE"
+    emoji: "💬"
+    
+  - name: "Ideas"
+    description: "Share and discuss new ideas and feature proposals"
+    emoji: "💡"
+    
+  - name: "Q&A"
+    description: "Ask questions and get help from the community"
+    emoji: "❓"
+    
+  - name: "Show and Tell"
+    description: "Show off what you've built with REChain IDE"
+    emoji: "🚀"
+    
+  - name: "Help"
+    description: "Get help with installation, configuration, and usage"
+    emoji: "🆘"
+
+# Default reactions for new discussions
+reactions:
+  - "👍"
+  - "👎"
+  - "❤️"
+  - "🚀"
+  - "👀"

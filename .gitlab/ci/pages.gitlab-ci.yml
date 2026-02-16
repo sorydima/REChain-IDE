@@ -1,0 +1,31 @@
+# GitLab Pages deployment for documentation
+# This template deploys documentation to GitLab Pages
+
+stages:
+  - build
+  - deploy
+
+pages:
+  stage: deploy
+  image: node:18
+  script:
+    - cd docs
+    - npm ci || true
+    - npm run build || npm run docs:build || echo "Building static docs"
+    - |
+      if [ -d "build" ]; then
+        mv build ../public
+      elif [ -d "dist" ]; then
+        mv dist ../public
+      elif [ -d "_site" ]; then
+        mv _site ../public
+      else
+        mkdir -p ../public
+        cp -r . ../public/
+      fi
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  publish: public

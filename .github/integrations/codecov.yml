@@ -1,0 +1,35 @@
+# Codecov Configuration
+# Code coverage reporting configuration
+
+coverage:
+  status:
+    project:
+      default:
+        target: 80%
+        threshold: 5%
+        base: auto
+        if_not_found: success
+        if_ci_failed: error
+        only_pulls: false
+    patch:
+      default:
+        target: 80%
+        threshold: 5%
+        base: auto
+        if_not_found: success
+        if_ci_failed: error
+        only_pulls: false
+
+  ignore:
+    - "vendor/**/*"
+    - "**/*_test.go"
+    - "docs/**/*"
+    - "scripts/**/*"
+    - "*.md"
+
+  comment:
+    layout: "reach,diff,flags,files,footer"
+    behavior: default
+    require_changes: false
+    require_base: false
+    require_head: true

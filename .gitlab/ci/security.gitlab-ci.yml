@@ -1,0 +1,69 @@
+# Security scan jobs
+
+security:sast:
+  stage: security
+  image: returntocorp/semgrep:latest
+  script:
+    - semgrep --config=auto --error --json --output=semgrep-sast-report.json .
+    - semgrep --config=auto --error .
+  artifacts:
+    paths:
+      - semgrep-sast-report.json
+    expire_in: 1 week
+    when: always
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - if: $CI_MERGE_REQUEST_IID
+    - if: $CI_COMMIT_TAG
+  allow_failure: true
+
+security:dependency:
+  stage: security
+  image: golang:1.21
+  script:
+    - go install golang.org/x/vuln/cmd/govulncheck@latest
+    - cd rechain-ide
+    - govulncheck -json ./... > ../govulncheck-report.json || true
+    - govulncheck ./... || true
+  artifacts:
+    paths:
+      - govulncheck-report.json
+    expire_in: 1 week
+    when: always
+  allow_failure: true
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - if: $CI_MERGE_REQUEST_IID
+    - if: $CI_COMMIT_TAG
+
+security:secrets:
+  stage: security
+  image: trufflesecurity/trufflehog:latest
+  script:
+    - trufflehog git file://. --json --only-verified > trufflehog-report.json || true
+  artifacts:
+    paths:
+      - trufflehog-report.json
+    expire_in: 1 week
+    when: always
+  allow_failure: true
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - if: $CI_MERGE_REQUEST_IID
+    - if: $CI_COMMIT_TAG
+
+security:container:
+  stage: security
+  image: aquasec/trivy:latest
+  script:
+    - trivy fs --scanners vuln,secret,misconfig --format json -o trivy-fs-report.json .
+    - trivy fs --scanners vuln,secret,misconfig --exit-code 0 .
+  artifacts:
+    paths:
+      - trivy-fs-report.json
+    expire_in: 1 week
+    when: always
+  allow_failure: true
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - if: $CI_MERGE_REQUEST_IID

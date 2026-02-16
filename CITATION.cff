@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: "REChain Quantum-CrossAI IDE Engine Team"
+    given-names: ""
+    orcid: "https://orcid.org/0000-0000-0000-0000"
+title: "REChain Quantum-CrossAI IDE Engine"
+version: 1.0.0
+doi: ""
+date-released: 2026-02-14
+url: "https://github.com/rechain-ai/rechain-ide"

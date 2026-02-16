@@ -1,0 +1,18 @@
+﻿# RAG index
+curl -X POST http://localhost:8083/index \
+  -H "Content-Type: application/json" \
+  -d '{"schema_version":"0.1.0","repo":"demo","files":["a.go","README.md"]}'
+
+# RAG search
+curl "http://localhost:8083/search?q=readme"
+
+# RAG embed
+curl -X POST http://localhost:8083/embed \
+  -H "Content-Type: application/json" \
+  -d '{"schema_version":"0.1.0","text":"hello world"}'
+
+# RAG metrics
+curl http://localhost:8083/metrics
+
+# RAG cache metrics
+curl http://localhost:8083/cache-metrics

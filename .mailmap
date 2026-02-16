@@ -1,0 +1,7 @@
+# .mailmap - Git author mapping file
+# Format: Proper Name <proper@email.com> Commit Name <commit@email.com>
+
+# Example entries:
+# Jane Doe <jane.doe@example.com> Jane D <jane.doe@example.com>
+# John Smith <john.smith@example.com> John K Smith <jsmith@example.com>
+# John Smith <john.smith@example.com> jsmith <jsmith@example.com>

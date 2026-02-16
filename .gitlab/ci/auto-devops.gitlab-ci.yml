@@ -1,0 +1,113 @@
+# Auto DevOps template for REChain Quantum-CrossAI IDE Engine
+# This template can be included in .gitlab-ci.yml for projects using Auto DevOps
+
+stages:
+  - build
+  - test
+  - security
+  - deploy
+
+variables:
+  DOCKER_DRIVER: overlay2
+  DOCKER_TLS_CERTDIR: "/certs"
+  
+# Auto Build
+auto_build:
+  stage: build
+  image: docker:24-dind
+  services:
+    - docker:24-dind
+  script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA .
+    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+  rules:
+    - if: $CI_COMMIT_BRANCH
+
+# Auto Test
+auto_test:
+  stage: test
+  image: golang:1.21
+  script:
+    - cd rechain-ide
+    - go test -v ./...
+    - go test -race -short ./...
+  rules:
+    - if: $CI_COMMIT_BRANCH
+
+# Auto Code Quality
+auto_code_quality:
+  stage: test
+  image: docker:24-dind
+  services:
+    - docker:24-dind
+  script:
+    - docker run --env SOURCE_CODE="$PWD" 
+                 --volume "$PWD":/code 
+                 --volume /var/run/docker.sock:/var/run/docker.sock 
+                 "registry.gitlab.com/gitlab-org/ci-cd/codequality:latest" 
+                 /code
+  artifacts:
+    reports:
+      codequality: gl-code-quality-report.json
+    paths:
+      - gl-code-quality-report.json
+  rules:
+    - if: $CI_COMMIT_BRANCH
+  allow_failure: true
+
+# Auto SAST
+auto_sast:
+  stage: security
+  image: docker:24-dind
+  services:
+    - docker:24-dind
+  script:
+    - docker run --env SAST_CONFIDENCE_LEVEL=5 
+                 --volume "$PWD:/code" 
+                 --volume /var/run/docker.sock:/var/run/docker.sock 
+                 "registry.gitlab.com/gitlab-org/security-products/sast:latest" 
+                 /code
+  artifacts:
+    reports:
+      sast: gl-sast-report.json
+    paths:
+      - gl-sast-report.json
+  rules:
+    - if: $CI_COMMIT_BRANCH
+  allow_failure: true
+
+# Auto Dependency Scanning
+auto_dependency_scanning:
+  stage: security
+  image: docker:24-dind
+  services:
+    - docker:24-dind
+  script:
+    - docker run --env DEPENDENCY_SCANNING_ONLINE=true 
+                 --volume "$PWD:/code" 
+                 --volume /var/run/docker.sock:/var/run/docker.sock 
+                 "registry.gitlab.com/gitlab-org/security-products/dependency-scanning:latest" 
+                 /code
+  artifacts:
+    reports:
+      dependency_scanning: gl-dependency-scanning-report.json
+    paths:
+      - gl-dependency-scanning-report.json
+  rules:
+    - if: $CI_COMMIT_BRANCH
+  allow_failure: true
+
+# Auto Deploy
+auto_deploy:
+  stage: deploy
+  image: alpine:latest
+  script:
+    - echo "Auto deploy placeholder - configure for your environment"
+    - echo "This would deploy to your staging/production environment"
+  environment:
+    name: production
+    url: https://rechain-ide.example.com
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  when: manual

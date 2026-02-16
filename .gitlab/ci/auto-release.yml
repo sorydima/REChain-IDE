@@ -1,0 +1,71 @@
+# GitLab CI Auto Release Pipeline
+
+stages:
+  - auto-release
+
+variables:
+  GO_VERSION: "1.21"
+  NODE_VERSION: "18"
+
+before_script:
+  - echo "Starting auto release pipeline for REChain IDE"
+  - git config --global user.email "ci@rechain.ai"
+  - git config --global user.name "REChain CI"
+
+build-binaries:
+  stage: auto-release
+  image: golang:${GO_VERSION}
+  script:
+    - echo "Building release binaries..."
+    - cd rechain-ide
+    - mkdir -p release-assets
+    - for dir in cmd/*/; do
+        if [ -d "$dir" ]; then
+          binary_name=$(basename $dir)
+          echo "Building $binary_name..."
+          GOOS=linux GOARCH=amd64 go build -o ../release-assets/${binary_name}-linux-amd64 ./$dir
+          GOOS=windows GOARCH=amd64 go build -o ../release-assets/${binary_name}-windows-amd64.exe ./$dir
+          GOOS=darwin GOARCH=amd64 go build -o ../release-assets/${binary_name}-darwin-amd64 ./$dir
+        fi
+      done
+  artifacts:
+    paths:
+      - release-assets/
+
+build-extension:
+  stage: auto-release
+  image: node:${NODE_VERSION}
+  script:
+    - echo "Building VS Code extension..."
+    - cd rechain-ide/vscode-extension/extension
+    - npm install
+    - npm run package
+    - cp *.vsix ../../../../release-assets/ 2>/dev/null || echo "No VSIX file generated"
+  artifacts:
+    paths:
+      - release-assets/
+
+generate-changelog:
+  stage: auto-release
+  image: alpine:latest
+  script:
+    - echo "Generating changelog..."
+    - echo "# Changelog" > CHANGELOG.md
+    - echo "## $CI_COMMIT_TAG" >> CHANGELOG.md
+    - echo "" >> CHANGELOG.md
+    - git log --oneline $(git describe --tags --abbrev=0 $CI_COMMIT_TAG^ 2>/dev/null || git rev-list --max-parents=0 HEAD)..$CI_COMMIT_TAG >> CHANGELOG.md
+  artifacts:
+    paths:
+      - CHANGELOG.md
+
+create-release:
+  stage: auto-release
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  script:
+    - echo "Creating release..."
+    - release-cli create --name "Release $CI_COMMIT_TAG" --tag-name $CI_COMMIT_TAG --description "$(cat CHANGELOG.md)"
+  artifacts:
+    paths:
+      - release-assets/
+  only:
+    - tags

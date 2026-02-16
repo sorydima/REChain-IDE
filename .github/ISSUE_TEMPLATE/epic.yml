@@ -1,0 +1,51 @@
+---
+name: Epic / Tracking Issue
+about: Large feature that requires multiple PRs
+title: "[Epic] "
+labels: ["epic", "tracking", "triage"]
+assignees: ''
+
+---
+
+**Epic Description**
+<!-- Describe the overall goal of this epic -->
+
+**Motivation**
+<!-- Why is this epic needed? What problem does it solve? -->
+
+**Acceptance Criteria**
+<!-- What does "done" look like for this epic? -->
+
+- [ ] Criterion 1
+- [ ] Criterion 2
+- [ ] Criterion 3
+
+**Related Issues**
+<!-- Link to related issues that are part of this epic -->
+
+- #123
+- #124
+- #125
+
+**Tasks / Sub-issues**
+
+- [ ] Task 1: Description
+- [ ] Task 2: Description
+- [ ] Task 3: Description
+
+**Technical Considerations**
+<!-- Any architectural or technical notes -->
+
+**Dependencies**
+<!-- What needs to happen before this epic can start? -->
+
+**Timeline**
+<!-- Rough timeline or milestones -->
+
+- Target start: 
+- Target completion: 
+
+**Stakeholders**
+<!-- Who should be involved in this epic? -->
+
+/label ~epic ~tracking

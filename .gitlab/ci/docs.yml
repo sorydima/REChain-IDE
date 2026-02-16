@@ -1,0 +1,60 @@
+# GitLab CI Documentation Pipeline
+
+stages:
+  - docs
+
+variables:
+  NODE_VERSION: "18"
+
+before_script:
+  - echo "Starting documentation pipeline for REChain IDE"
+  - git config --global user.email "ci@rechain.ai"
+  - git config --global user.name "REChain CI"
+
+docs-lint:
+  stage: docs
+  image: node:${NODE_VERSION}
+  script:
+    - echo "Linting documentation files..."
+    - npm install -g markdownlint-cli
+    - markdownlint docs/**/*.md
+    - markdownlint README.md
+    - markdownlint CONTRIBUTING.md
+
+docs-spellcheck:
+  stage: docs
+  image: node:${NODE_VERSION}
+  script:
+    - echo "Spell checking documentation..."
+    - npm install -g yaspeller
+    - yaspeller docs/
+    - yaspeller README.md
+    - yaspeller CONTRIBUTING.md
+
+docs-link-check:
+  stage: docs
+  image: node:${NODE_VERSION}
+  script:
+    - echo "Checking documentation links..."
+    - npm install -g linkinator
+    - linkinator docs/**/*.md --skip "localhost"
+    - linkinator README.md --skip "localhost"
+    - linkinator CONTRIBUTING.md --skip "localhost"
+
+docs-validate:
+  stage: docs
+  image: python:3.9
+  script:
+    - echo "Validating documentation structure..."
+    - pip install mkdocs
+    - mkdocs build --strict
+
+docs-deploy:
+  stage: docs
+  image: node:${NODE_VERSION}
+  script:
+    - echo "Deploying documentation..."
+    - npm install -g gh-pages
+    - # Add deployment logic here
+  only:
+    - main

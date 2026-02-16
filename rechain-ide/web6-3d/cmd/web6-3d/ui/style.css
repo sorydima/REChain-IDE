@@ -1,0 +1,141 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 24px;
+  background: #f6f6f6;
+}
+
+#viewport {
+  width: 900px;
+  height: 480px;
+  border: 1px solid #ccc;
+  background: #fff;
+  display: block;
+}
+
+#legend {
+  margin-top: 12px;
+  color: #444;
+  font-size: 14px;
+}
+
+#queue {
+  margin-top: 8px;
+  color: #222;
+  font-weight: bold;
+}
+
+#controls {
+  margin: 12px 0;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+#search { padding: 6px 8px; width: 200px; }
+#mode, #depth, #type { padding: 6px 8px; }
+#mode-indicator { font-size: 13px; color: #333; }
+#legend span { display: inline-block; margin-right: 10px; }
+
+#cache {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #333;
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 6px 8px;
+  display: inline-block;
+}
+
+#trace {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #333;
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 6px 8px;
+  max-width: 900px;
+  white-space: pre-wrap;
+}
+
+#debug-prom {
+  white-space: pre-wrap;
+  font-family: Consolas, "Courier New", monospace;
+}
+
+#tasks {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #333;
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 6px 8px;
+  max-width: 900px;
+}
+
+.task-item {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 3px 0;
+  border-bottom: 1px dashed #eee;
+  cursor: pointer;
+}
+
+.task-item:last-child {
+  border-bottom: none;
+}
+
+.task-item.active {
+  background: #fff3df;
+}
+
+#legend .dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 4px;
+}
+
+button { padding: 6px 10px; }
+
+#drawer {
+  display: none;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: max-height .2s ease, opacity .2s ease, transform .2s ease;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ddd;
+  background: #fff;
+}
+
+#drawer.open {
+  display: block;
+  max-height: 260px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#drawer .row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+#drawer label { font-size: 12px; color: #333; }
+#drawer strong { font-size: 13px; }
+#settings { background: #eee; }
+
+:root {
+  --match-default: #f39c12;
+  --match-dir: #f5a623;
+  --match-file: #f08c6a;
+  --match-pkg: #f1b54a;
+  --match-unknown: #f6c08a;
+  --type-unknown: #999;
+}

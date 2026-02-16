@@ -1,0 +1,79 @@
+{
+  "name": "rechain-ide",
+  "version": "1.0.0",
+  "description": "REChain Quantum-CrossAI IDE Engine",
+  "keywords": [
+    "ide",
+    "quantum-computing",
+    "ai",
+    "cross-ai",
+    "development-environment",
+    "go",
+    "typescript"
+  ],
+  "homepage": "https://github.com/rechain-ai/rechain-ide",
+  "bugs": {
+    "url": "https://github.com/rechain-ai/rechain-ide/issues"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "REChain AI Team",
+    "email": "info@rechain.ai",
+    "url": "https://rechain.ai"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rechain-ai/rechain-ide.git"
+  },
+  "modules": {
+    "agents": {
+      "path": "rechain-ide/agents",
+      "description": "AI agents for code assistance"
+    },
+    "cli": {
+      "path": "rechain-ide/cli",
+      "description": "Command-line interface"
+    },
+    "kernel": {
+      "path": "rechain-ide/kernel",
+      "description": "Core IDE kernel"
+    },
+    "orchestrator": {
+      "path": "rechain-ide/orchestrator",
+      "description": "Cross-AI model orchestrator"
+    },
+    "quantum": {
+      "path": "rechain-ide/quantum",
+      "description": "Quantum computing integration"
+    },
+    "rag": {
+      "path": "rechain-ide/rag",
+      "description": "Retrieval-Augmented Generation system"
+    },
+    "shared": {
+      "path": "rechain-ide/shared",
+      "description": "Shared libraries"
+    },
+    "vscode-extension": {
+      "path": "rechain-ide/vscode-extension",
+      "description": "VS Code extension"
+    },
+    "web6-3d": {
+      "path": "rechain-ide/web6-3d",
+      "description": "3D visualization engine"
+    }
+  },
+  "scripts": {
+    "build": "make build",
+    "test": "make test",
+    "dev": "make dev",
+    "docs": "make docs-serve"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "go": ">=1.21.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}

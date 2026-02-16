@@ -1,0 +1,60 @@
+# GitLab CI Branch Protection Pipeline
+
+stages:
+  - branch-protection
+
+before_script:
+  - echo "Starting branch protection pipeline for REChain IDE"
+  - git config --global user.email "ci@rechain.ai"
+  - git config --global user.name "REChain CI"
+
+protect-main-branch:
+  stage: branch-protection
+  image: alpine:latest
+  script:
+    - echo "Protecting main branch..."
+    - apk add --no-cache git
+    - if [ "$CI_COMMIT_BRANCH" = "main" ] && [ "$CI_PIPELINE_SOURCE" = "push" ]; then
+        echo "Direct pushes to main branch are not allowed"
+        exit 1
+      fi
+
+check-merge-conflicts:
+  stage: branch-protection
+  image: alpine:latest
+  script:
+    - echo "Checking for merge conflicts..."
+    - apk add --no-cache git
+    - if git merge --no-commit --no-ff origin/main; then
+        git merge --abort
+        echo "No merge conflicts detected"
+      else
+        echo "Merge conflicts detected"
+        exit 1
+      fi
+
+validate-required-files:
+  stage: branch-protection
+  image: alpine:latest
+  script:
+    - echo "Validating required files..."
+    - required_files=("README.md" "LICENSE" "CONTRIBUTING.md")
+    - for file in "${required_files[@]}"; do
+        if [ ! -f "$file" ]; then
+          echo "Required file $file is missing"
+          exit 1
+        fi
+      done
+
+check-forbidden-files:
+  stage: branch-protection
+  image: alpine:latest
+  script:
+    - echo "Checking for forbidden files..."
+    - forbidden_files=(".env" "*.log" "*.tmp")
+    - for pattern in "${forbidden_files[@]}"; do
+        if ls $pattern 1> /dev/null 2>&1; then
+          echo "Forbidden file pattern $pattern found"
+          exit 1
+        fi
+      done

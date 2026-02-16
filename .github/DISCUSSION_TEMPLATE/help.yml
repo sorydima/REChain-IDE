@@ -1,0 +1,34 @@
+---
+name: Help Wanted
+about: Request help with a specific task or problem
+title: "[Help] "
+labels: ["help wanted", "question"]
+assignees: ''
+
+---
+
+**What I need help with**
+<!-- Describe the problem or task -->
+
+**What I've tried**
+<!-- What approaches have you already attempted? -->
+
+**Code/Configuration**
+<!-- Share relevant code or configuration (without sensitive data) -->
+```
+Paste code here
+```
+
+**Error messages**
+<!-- If applicable, share error messages -->
+```
+Error message here
+```
+
+**Environment**
+- OS: 
+- IDE Version: 
+- Go Version: 
+
+**Additional context**
+<!-- Any other relevant information -->

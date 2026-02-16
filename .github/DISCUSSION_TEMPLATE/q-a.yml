@@ -1,0 +1,23 @@
+---
+name: Q&A
+about: Ask a question about the project
+title: "[Q&A] "
+labels: ["question", "triage"]
+assignees: ''
+
+---
+
+**Question**
+<!-- What would you like to know? -->
+
+**Context**
+<!-- Provide any relevant context that might help us understand your question -->
+
+**What I've tried**
+<!-- If applicable, describe what you've already tried or researched -->
+
+**Documentation**
+<!-- Have you checked the documentation? Which pages? -->
+
+**Additional Information**
+<!-- Add any other details that might be helpful -->

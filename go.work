@@ -1,0 +1,13 @@
+go 1.21
+
+use (
+  ./rechain-ide/orchestrator
+  ./rechain-ide/kernel
+  ./rechain-ide/rag
+  ./rechain-ide/agents
+  ./rechain-ide/quantum
+  ./rechain-ide/cli
+  ./rechain-ide/web6-3d
+  ./rechain-ide/vscode-extension
+  ./rechain-ide/shared
+)

@@ -1,0 +1,23 @@
+﻿# Orchestrator submit task
+curl -X POST http://localhost:8081/tasks \
+  -H "Content-Type: application/json" \
+  -d '{"schema_version":"0.1.0","type":"patch","input":"add logging","context":[],"constraints":[],"metadata":{"requester":"cli","priority":"normal"}}'
+
+# Orchestrator submit task with model routing constraints
+curl -X POST http://localhost:8081/tasks \
+  -H "Content-Type: application/json" \
+  -d '{"schema_version":"0.1.0","type":"patch","input":"add logging","context":[],"constraints":[{"key":"models","value":"model_a,hf_gigachat3_702b_preview"},{"key":"max_models","value":2},{"key":"routing","value":"weighted_quality"},{"key":"weight_cost","value":0.3},{"key":"weight_latency","value":0.5},{"key":"weight_quality","value":0.2},{"key":"budget_ms","value":2000},{"key":"budget_usd","value":0.05},{"key":"max_new_tokens","value":256},{"key":"fallback_models","value":"model_a"}],"metadata":{"requester":"cli","priority":"normal"}}'
+
+# Quality score
+curl -X POST http://localhost:8081/quality-score \
+  -H "Content-Type: application/json" \
+  -d '{"output":"ok","diff":"diff --git a/a b/a\n+line"}'
+
+# Orchestrator metrics
+curl http://localhost:8081/metrics
+
+# Orchestrator task status
+curl http://localhost:8081/tasks/<task_id>
+
+# Orchestrator result
+curl http://localhost:8081/tasks/<task_id>/result

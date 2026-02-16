@@ -1,0 +1,69 @@
+# GitLab CI/CD includes for REChain Quantum-CrossAI IDE Engine
+
+include:
+  - local: '.gitlab/ci/build.gitlab-ci.yml'
+  - local: '.gitlab/ci/test.gitlab-ci.yml'
+  - local: '.gitlab/ci/security.gitlab-ci.yml'
+  - local: '.gitlab/ci/deploy.gitlab-ci.yml'
+  - local: '.gitlab/ci/docs.gitlab-ci.yml'
+  - local: '.gitlab/ci/release.gitlab-ci.yml'
+
+stages:
+  - build
+  - test
+  - security
+  - docs
+  - deploy
+  - release
+
+variables:
+  DOCKER_DRIVER: overlay2
+  DOCKER_TLS_CERTDIR: "/certs"
+  GIT_DEPTH: 20
+  GO_VERSION: "1.21"
+  NODE_VERSION: "18"
+  FF_USE_FASTZIP: "true"
+  ARTIFACT_COMPRESSION_LEVEL: "fast"
+  CACHE_COMPRESSION_LEVEL: "fast"
+
+# Default settings for all jobs
+default:
+  image: golang:${GO_VERSION}
+  tags:
+    - docker
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
+
+# Global cache configuration
+cache:
+  key: "${CI_COMMIT_REF_SLUG}"
+  paths:
+    - .go-cache/
+  policy: pull-push
+
+# Workflow rules to control when pipelines run
+workflow:
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - if: $CI_MERGE_REQUEST_IID
+    - if: $CI_COMMIT_TAG
+    - if: $CI_COMMIT_BRANCH =~ /^release\/\d+\.\d+$/
+    - if: $CI_COMMIT_BRANCH =~ /^hotfix\//
+
+# Templates
+.go-cache: &go-cache
+  cache:
+    key: "${CI_JOB_NAME}"
+    paths:
+      - .go-cache/
+    policy: pull-push
+
+.node-cache: &node-cache
+  cache:
+    key: "${CI_JOB_NAME}"
+    paths:
+      - node_modules/
+    policy: pull-push

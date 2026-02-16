@@ -1,0 +1,40 @@
+name: Project Status
+
+on:
+  schedule:
+    - cron: '0 9 * * 1'  # Weekly on Monday at 9 AM
+  workflow_dispatch:
+
+jobs:
+  status-report:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Generate Status Report
+        run: |
+          echo "# Project Status Report" > status-report.md
+          echo "Generated on $(date)" >> status-report.md
+          echo "" >> status-report.md
+          echo "## Repository Statistics" >> status-report.md
+          echo "- Stars: ${{ github.event.repository.stargazers_count }}" >> status-report.md
+          echo "- Forks: ${{ github.event.repository.forks_count }}" >> status-report.md
+          echo "- Open Issues: ${{ github.event.repository.open_issues_count }}" >> status-report.md
+          echo "" >> status-report.md
+          echo "## Recent Activity" >> status-report.md
+          echo "- Last Commit: ${{ github.event.repository.pushed_at }}" >> status-report.md
+
+      - name: Create Issue
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const fs = require('fs');
+            const content = fs.readFileSync('status-report.md', 'utf8');
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `Weekly Status Report - ${new Date().toISOString().slice(0, 10)}`,
+              body: content,
+              labels: ['status-report']
+            });

@@ -1,0 +1,44 @@
+# Documentation jobs
+
+docs:build:
+  stage: docs
+  image: node:18
+  script:
+    - cd docs
+    - npm ci || true
+    - npm run build || npm run docs:build || echo "No build script found"
+  artifacts:
+    paths:
+      - docs/build
+      - docs/dist
+    expire_in: 1 week
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - if: $CI_MERGE_REQUEST_IID
+  allow_failure: true
+  needs: []
+
+docs:lint:
+  stage: docs
+  image: node:18
+  script:
+    - cd docs
+    - npm ci || true
+    - npm run lint || npm run docs:lint || echo "No lint script found"
+  rules:
+    - if: $CI_COMMIT_BRANCH
+    - if: $CI_MERGE_REQUEST_IID
+  allow_failure: true
+  needs: []
+
+docs:links:
+  stage: docs
+  image: node:18
+  script:
+    - npm install -g markdown-link-check || true
+    - find . -name "*.md" -not -path "./node_modules/*" -not -path "./vendor/*" -exec markdown-link-check {} \; || true
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - if: $CI_MERGE_REQUEST_IID
+  allow_failure: true
+  needs: []

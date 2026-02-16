@@ -1,0 +1,6 @@
+﻿{
+  "schema_version": "0.1.0",
+  "diff": "diff --git ...",
+  "rationale": "Merged based on tests and static analysis.",
+  "confidence": 0.72
+}

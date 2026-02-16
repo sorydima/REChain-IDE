@@ -1,0 +1,28 @@
+# Development Dockerfile for REChain IDE
+FROM golang:1.21-alpine
+
+# Install essential packages
+RUN apk add --no-cache \
+    git \
+    bash \
+    curl \
+    nodejs \
+    npm
+
+# Set working directory
+WORKDIR /app
+
+# Copy go mod files
+COPY rechain-ide/go.mod rechain-ide/go.sum ./rechain-ide/
+
+# Download dependencies
+RUN cd rechain-ide && go mod download
+
+# Copy source code
+COPY . .
+
+# Expose ports
+EXPOSE 8080 3000
+
+# Default command
+CMD ["sleep", "infinity"]

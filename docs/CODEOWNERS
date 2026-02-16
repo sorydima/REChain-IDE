@@ -1,0 +1,53 @@
+# Documentation Code Owners
+
+# Main documentation
+* @documentation-team
+
+# API documentation
+api.md @api-team
+API_DOCS.md @api-team
+
+# Architecture documentation
+ARCHITECTURE.md @architecture-team
+architecture-*.md @architecture-team
+
+# Technical documentation
+TECHNICAL_DOCS.md @engineering-team
+technical-*.md @engineering-team
+
+# User guides
+USER_GUIDE.md @product-team
+TUTORIAL.md @product-team
+user-*.md @product-team
+
+# Developer resources
+CODING_STANDARDS.md @engineering-team
+TESTING_GUIDELINES.md @qa-team
+development-*.md @engineering-team
+
+# Compliance and security
+COMPLIANCE.md @legal-team
+SECURITY.md @security-team
+compliance-*.md @legal-team
+security-*.md @security-team
+
+# Project management
+PROJECT_MANAGEMENT.md @product-team
+ROADMAP.md @product-team
+project-*.md @product-team
+
+# Specialized documentation
+DATA_MANAGEMENT.md @data-team
+PERFORMANCE_OPTIMIZATION.md @engineering-team
+specialized-*.md @specialized-team
+
+# Community guidelines
+COMMUNITY_GUIDELINES.md @community-team
+ACCESSIBILITY_GUIDELINES.md @community-team
+TRANSLATION_GUIDELINES.md @community-team
+
+# ADRs
+adr/ @architecture-team
+
+# All other docs files
+*.md @documentation-team

@@ -1,0 +1,92 @@
+# GitLab Project Settings Configuration
+# These settings should be applied via GitLab API or manually in project settings
+
+project:
+  name: "REChain Quantum-CrossAI IDE Engine"
+  description: "A quantum-crossAI powered IDE for blockchain development"
+  visibility: public
+  issues_enabled: true
+  merge_requests_enabled: true
+  wiki_enabled: true
+  snippets_enabled: true
+  container_registry_enabled: true
+  lfs_enabled: true
+  packages_enabled: true
+  pages_enabled: true
+  
+merge_requests:
+  merge_method: merge
+  merge_commit_template: |
+    Merge branch '{{source_branch}}' into '{{target_branch}}'
+    
+    {{title}}
+    
+    {{description}}
+    
+    See merge request {{reference}}
+  squash_option: default_on
+  
+  approval_rules:
+    - name: "Code Review"
+      approvals_required: 1
+      rule_type: regular
+      
+  # Merge request settings
+  only_allow_merge_if_pipeline_succeeds: true
+  only_allow_merge_if_all_discussions_are_resolved: true
+  allow_merge_on_skipped_pipeline: false
+  remove_source_branch_after_merge: true
+
+issues:
+  # Issue settings
+  allow_duplicate_discussions: false
+  show_separate_recent_searches: true
+  
+# CI/CD settings
+ci_cd:
+  # General pipelines
+  public_builds: false
+  auto_cancel_pending_pipelines: enabled
+  
+  # Pipeline configuration
+  pipeline_configuration:
+    path: .gitlab-ci.yml
+    
+  # Auto DevOps
+  auto_devops_enabled: false
+  
+  # Build artifacts
+  artifacts_max_size: 100  # MB
+  
+# Protected branches
+protected_branches:
+  - name: main
+    push_access_level: no one
+    merge_access_level: maintainers
+    unprotect_access_level: owners
+    allow_force_push: false
+    code_owner_approval_required: true
+    
+  - name: develop
+    push_access_level: no one
+    merge_access_level: developers
+    unprotect_access_level: maintainers
+    allow_force_push: false
+
+# Protected tags
+protected_tags:
+  - name: 'v*'
+    create_access_level: maintainers
+
+# Repository settings
+repository:
+  default_branch: main
+  autoclose_referenced_issues: true
+  
+# Webhooks (configure via UI or API)
+webhooks:
+  - url: "${WEBHOOK_URL}"
+    push_events: true
+    merge_requests_events: true
+    issues_events: true
+    enable_ssl_verification: true

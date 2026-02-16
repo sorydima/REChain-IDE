@@ -1,0 +1,10 @@
+﻿{
+  "schema_version": "0.1.0",
+  "model_id": "model_a",
+  "output": "summary",
+  "diff": "diff --git ...",
+  "metrics": [
+    {"name": "latency_ms", "value": 820},
+    {"name": "tokens_out", "value": 1024}
+  ]
+}

@@ -1,0 +1,48 @@
+name: Compatibility Test
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  compatibility:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        go: [1.21]
+        node: [18]
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Go
+      uses: actions/setup-go@v3
+      with:
+        go-version: ${{ matrix.go }}
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node }}
+
+    - name: Install dependencies
+      run: |
+        cd rechain-ide
+        for module in agents cli kernel orchestrator quantum rag shared vscode-extension web6-3d; do
+          echo "Installing dependencies for $module...";
+          cd $module;
+          go mod tidy;
+          cd ..;
+        done
+        cd vscode-extension/extension
+        npm install
+        cd ../..
+
+    - name: Run compatibility tests
+      run: |
+        echo "Running compatibility tests on ${{ matrix.os }}..."
+        cd rechain-ide
+        go test ./...

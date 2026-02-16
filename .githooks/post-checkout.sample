@@ -1,0 +1,36 @@
+#!/bin/sh
+# post-checkout hook - runs after checkout/clone
+# To install: copy this file to .git/hooks/post-checkout and make it executable
+
+# Get the previous and current HEAD
+prev_head=$1
+new_head=$2
+ checkout_type=$3  # 0 = file checkout, 1 = branch checkout, 3 = clone
+
+# Only run on branch checkout or clone
+if [ "$checkout_type" != "1" ] && [ "$checkout_type" != "3" ]; then
+    exit 0
+fi
+
+# Colors for output
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
+echo "${YELLOW}Post-checkout setup...${NC}"
+
+# Run any necessary setup commands
+if [ -f "Makefile" ]; then
+    echo "${GREEN}Project has a Makefile. Run 'make help' for available commands.${NC}"
+fi
+
+if [ -f "go.work" ]; then
+    echo "${GREEN}Go workspace detected. Dependencies will be downloaded automatically.${NC}"
+fi
+
+# Show current branch and commit info
+branch=$(git symbolic-ref --short HEAD 2>/dev/null || git describe --tags --exact-match 2>/dev/null || git rev-parse --short HEAD)
+echo "${GREEN}Switched to: $branch${NC}"
+echo "${GREEN}Commit: $(git log -1 --oneline)${NC}"
+
+exit 0

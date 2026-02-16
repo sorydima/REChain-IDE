@@ -1,0 +1,26 @@
+stages:
+  - build
+  - test
+
+variables:
+  GO_VERSION: "1.21"
+
+before_script:
+  - go version
+
+build:
+  stage: build
+  image: golang:${GO_VERSION}
+  script:
+    - cd rechain-ide
+    - go build -v ./...
+  artifacts:
+    paths:
+      - rechain-ide/
+
+test:
+  stage: test
+  image: golang:${GO_VERSION}
+  script:
+    - cd rechain-ide
+    - go test -v ./...

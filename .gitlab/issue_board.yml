@@ -1,0 +1,128 @@
+# GitLab Issue Board Configuration
+
+# Board settings
+board:
+  name: "REChain IDE Development"
+  description: "Main development board for REChain IDE project"
+  assignee: null
+  milestone: null
+  labels: []
+  weight: null
+
+# Board lists configuration
+lists:
+  - label: "To Do"
+    position: 0
+    collapsed: false
+  - label: "In Progress"
+    position: 1
+    collapsed: false
+    limit_metric: "open_issues_count"
+    limit_value: 10
+  - label: "In Review"
+    position: 2
+    collapsed: false
+    limit_metric: "open_merge_requests_count"
+    limit_value: 5
+  - label: "Done"
+    position: 3
+    collapsed: true
+
+# Board preferences
+preferences:
+  show_empty_state: true
+  show_weight: true
+  show_labels: true
+  show_assignees: true
+  show_milestones: true
+  show_iteration: true
+  show_due_date: true
+  show_created_at: true
+  show_updated_at: true
+  show_author: true
+  show_type: true
+  show_status: true
+  show_priority: true
+  show_confidential: true
+  show_blocked: true
+  show_health: true
+
+# Board permissions
+permissions:
+  read: 
+    - "@all"
+  write:
+    - "@developers"
+    - "@maintainers"
+  admin:
+    - "@maintainers"
+
+# Board automation
+automation:
+  # Auto-assign issues based on labels
+  auto_assign:
+    - label: "module: agents"
+      assignee: "@rechain-ide-agents-team"
+    - label: "module: cli"
+      assignee: "@rechain-ide-cli-team"
+    - label: "module: kernel"
+      assignee: "@rechain-ide-kernel-team"
+    - label: "module: orchestrator"
+      assignee: "@rechain-ide-orchestrator-team"
+    - label: "module: quantum"
+      assignee: "@rechain-ide-quantum-team"
+    - label: "module: rag"
+      assignee: "@rechain-ide-rag-team"
+    - label: "module: shared"
+      assignee: "@rechain-ide-core-team"
+    - label: "module: vscode-extension"
+      assignee: "@rechain-ide-vscode-team"
+    - label: "module: web6-3d"
+      assignee: "@rechain-ide-web6-team"
+
+  # Auto-move issues based on status
+  auto_move:
+    - from: "To Do"
+      to: "In Progress"
+      when: "label_added:status: in progress"
+    - from: "In Progress"
+      to: "In Review"
+      when: "label_added:status: needs review"
+    - from: "In Review"
+      to: "Done"
+      when: "merged"
+    - from: "In Progress"
+      to: "To Do"
+      when: "label_removed:status: in progress"
+    - from: "In Review"
+      to: "In Progress"
+      when: "label_removed:status: needs review"
+
+  # Auto-close issues
+  auto_close:
+    - when: "merged"
+      labels: ["status: ready"]
+    - when: "pipeline_success"
+      labels: ["status: ready"]
+
+# Board notifications
+notifications:
+  on_move:
+    enabled: true
+    recipients:
+      - "@assignee"
+      - "@author"
+  on_assign:
+    enabled: true
+    recipients:
+      - "@assignee"
+  on_label:
+    enabled: true
+    recipients:
+      - "@assignee"
+      - "@author"
+  on_due_date:
+    enabled: true
+    recipients:
+      - "@assignee"
+      - "@author"

@@ -1,0 +1,38 @@
+#!/bin/sh
+# pre-rebase hook - runs before rebasing
+# To install: copy this file to .git/hooks/pre-rebase and make it executable
+
+# Prevent rebasing commits that have already been pushed
+# (unless it's a fast-forward rebase)
+
+base=$1
+rebase_target=$2
+branch=$(git symbolic-ref HEAD 2>/dev/null | sed 's|^refs/heads/||')
+
+# If no branch (detached HEAD), allow rebase
+if [ -z "$branch" ]; then
+    exit 0
+fi
+
+# Check if the branch has been pushed
+pushed_commit=$(git rev-parse --verify refs/remotes/origin/$branch 2>/dev/null)
+current_commit=$(git rev-parse --verify HEAD 2>/dev/null)
+
+if [ -n "$pushed_commit" ] && [ "$pushed_commit" = "$current_commit" ]; then
+    echo "Warning: You are about to rebase commits that have been pushed to origin/$branch"
+    echo "This may cause issues for other developers."
+    echo ""
+    echo "Do you want to continue? (y/n)"
+    read -r response
+    case "$response" in
+        [yY]|[yY][eE][sS])
+            exit 0
+            ;;
+        *)
+            echo "Rebase aborted."
+            exit 1
+            ;;
+    esac
+fi
+
+exit 0

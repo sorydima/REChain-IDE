@@ -1,0 +1,24 @@
+# Code owners for REChain IDE project
+
+# Global owners
+* @rechain-ide-maintainers
+
+# Documentation
+docs/* @rechain-ide-docs
+
+# Go modules
+rechain-ide/agents/ @rechain-ide-agents-team
+rechain-ide/cli/ @rechain-ide-cli-team
+rechain-ide/kernel/ @rechain-ide-kernel-team
+rechain-ide/orchestrator/ @rechain-ide-orchestrator-team
+rechain-ide/quantum/ @rechain-ide-quantum-team
+rechain-ide/rag/ @rechain-ide-rag-team
+rechain-ide/shared/ @rechain-ide-core-team
+rechain-ide/web6-3d/ @rechain-ide-web6-team
+
+# VS Code Extension
+rechain-ide/vscode-extension/ @rechain-ide-vscode-team
+
+# CI/CD
+.github/workflows/ @rechain-ide-devops
+.gitlab-ci.yml @rechain-ide-devops

@@ -1,0 +1,8 @@
+# .git-blame-ignore-revs - Commits to ignore in git blame
+# Format: SHA1 commit hashes, one per line
+# See: https://git-scm.com/docs/git-blame#Documentation/git-blame.txt---ignore-revs-fileltfilegt
+
+# Example entries:
+# abc1234567890abcdef1234567890abcdef12345678  # Formatting changes
+# def1234567890abcdef1234567890abcdef12345678  # Automated refactoring
+# 1234567890abcdef1234567890abcdef1234567890ab  # Dependency updates

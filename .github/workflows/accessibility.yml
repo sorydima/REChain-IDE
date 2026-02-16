@@ -1,0 +1,36 @@
+name: Accessibility Test
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'rechain-ide/web6-3d/**'
+      - 'rechain-ide/vscode-extension/**'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'rechain-ide/web6-3d/**'
+      - 'rechain-ide/vscode-extension/**'
+
+jobs:
+  accessibility:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+
+    - name: Install accessibility testing tools
+      run: |
+        npm install -g pa11y
+        npm install -g axe-core
+
+    - name: Run accessibility tests
+      run: |
+        echo "Running accessibility tests..."
+        # Add accessibility test commands here
+        # pa11y URL
+        # axe-core tests

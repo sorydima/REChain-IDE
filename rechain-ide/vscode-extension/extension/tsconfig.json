@@ -1,0 +1,12 @@
+﻿{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es2020",
+    "outDir": "dist",
+    "rootDir": "src",
+    "lib": ["es2020"],
+    "sourceMap": true,
+    "strict": true,
+    "types": ["node", "vscode"]
+  }
+}

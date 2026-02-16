@@ -1,0 +1,41 @@
+---
+name: Regression Report
+about: Report a feature that worked before but is now broken
+title: "[Regression] "
+labels: ["regression", "bug", "priority::high"]
+assignees: ''
+
+---
+
+**Regression Description**
+<!-- What feature was working before but is now broken? -->
+
+**Last Known Working Version**
+<!-- Which version or commit was this working in? -->
+
+**Current Broken Version**
+<!-- Which version or commit is this broken in? -->
+
+**Steps to Reproduce**
+1. 
+2. 
+3. 
+
+**Expected Behavior**
+<!-- What should happen? -->
+
+**Actual Behavior**
+<!-- What happens instead? -->
+
+**Environment**
+- OS: 
+- IDE Version: 
+- Go Version: 
+
+**Additional Context**
+<!-- Any other relevant information -->
+
+**Possible Cause**
+<!-- If you have a guess about what caused this, share it -->
+
+/label ~regression ~bug ~priority::high

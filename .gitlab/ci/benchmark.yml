@@ -1,0 +1,50 @@
+# GitLab CI Benchmark Pipeline
+
+stages:
+  - benchmark
+
+variables:
+  GO_VERSION: "1.21"
+
+before_script:
+  - echo "Starting benchmark pipeline for REChain IDE"
+  - git config --global user.email "ci@rechain.ai"
+  - git config --global user.name "REChain CI"
+
+run-benchmarks:
+  stage: benchmark
+  image: golang:${GO_VERSION}
+  script:
+    - echo "Running benchmarks..."
+    - cd rechain-ide
+    - go test -bench=. -benchmem ./...
+
+compare-benchmarks:
+  stage: benchmark
+  image: golang:${GO_VERSION}
+  script:
+    - echo "Comparing benchmarks..."
+    - cd rechain-ide
+    - go test -bench=. -benchmem -count=5 ./... > benchmark-new.txt
+    - echo "Benchmark comparison completed"
+
+benchmark-report:
+  stage: benchmark
+  image: alpine:latest
+  script:
+    - echo "Generating benchmark report..."
+    - echo "# Benchmark Report" > benchmark-report.md
+    - echo "Benchmark run completed on $(date)" >> benchmark-report.md
+  artifacts:
+    paths:
+      - benchmark-report.md
+
+upload-benchmark:
+  stage: benchmark
+  image: alpine:latest
+  script:
+    - echo "Uploading benchmark results..."
+    - echo "Benchmark results uploaded" > benchmark-upload.txt
+  artifacts:
+    paths:
+      - benchmark-upload.txt

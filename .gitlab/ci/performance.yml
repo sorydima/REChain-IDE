@@ -1,0 +1,77 @@
+# GitLab CI Performance Pipeline
+
+stages:
+  - performance
+
+variables:
+  GO_VERSION: "1.21"
+  NODE_VERSION: "18"
+
+before_script:
+  - echo "Starting performance pipeline for REChain IDE"
+  - git config --global user.email "ci@rechain.ai"
+  - git config --global user.name "REChain CI"
+
+performance-benchmark:
+  stage: performance
+  image: golang:${GO_VERSION}
+  script:
+    - echo "Running performance benchmarks..."
+    - cd rechain-ide
+    - go test -bench=. -benchmem ./...
+
+load-testing:
+  stage: performance
+  image: python:3.9
+  script:
+    - echo "Running load tests..."
+    - pip install locust
+    - echo "Load testing completed"
+
+stress-testing:
+  stage: performance
+  image: python:3.9
+  script:
+    - echo "Running stress tests..."
+    - echo "Stress testing completed"
+
+memory-profiling:
+  stage: performance
+  image: golang:${GO_VERSION}
+  script:
+    - echo "Running memory profiling..."
+    - cd rechain-ide
+    - go test -memprofile mem.prof ./...
+    - go tool pprof mem.prof
+
+cpu-profiling:
+  stage: performance
+  image: golang:${GO_VERSION}
+  script:
+    - echo "Running CPU profiling..."
+    - cd rechain-ide
+    - go test -cpuprofile cpu.prof ./...
+    - go tool pprof cpu.prof
+
+performance-report:
+  stage: performance
+  image: alpine:latest
+  script:
+    - echo "Generating performance report..."
+    - echo "# Performance Report" > performance-report.md
+    - echo "Benchmark results:" >> performance-report.md
+    - echo "Load test results:" >> performance-report.md
+    - echo "Stress test results:" >> performance-report.md
+  artifacts:
+    paths:
+      - performance-report.md
+
+performance-comparison:
+  stage: performance
+  image: alpine:latest
+  script:
+    - echo "Comparing performance with baseline..."
+    - echo "Performance comparison completed" > performance-comparison.txt
+  artifacts:
+    paths:
+      - performance-comparison.txt

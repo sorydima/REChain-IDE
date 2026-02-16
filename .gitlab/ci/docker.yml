@@ -1,0 +1,78 @@
+# GitLab CI Docker Build Pipeline
+
+stages:
+  - docker-build
+
+variables:
+  DOCKER_DRIVER: overlay2
+  DOCKER_TLS_CERTDIR: "/certs"
+
+before_script:
+  - echo "Starting Docker build pipeline for REChain IDE"
+  - git config --global user.email "ci@rechain.ai"
+  - git config --global user.name "REChain CI"
+
+docker-build:
+  stage: docker-build
+  image: docker:stable
+  services:
+    - docker:dind
+  script:
+    - echo "Building Docker image..."
+    - docker build -t rechain/ide:latest .
+
+docker-push:
+  stage: docker-build
+  image: docker:stable
+  services:
+    - docker:dind
+  script:
+    - echo "Pushing Docker image..."
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+    - docker push rechain/ide:latest
+  only:
+    - main
+
+docker-extension-build:
+  stage: docker-build
+  image: docker:stable
+  services:
+    - docker:dind
+  script:
+    - echo "Building VS Code extension Docker image..."
+    - cd rechain-ide/vscode-extension
+    - docker build -t rechain/ide-extension:latest .
+
+docker-extension-push:
+  stage: docker-build
+  image: docker:stable
+  services:
+    - docker:dind
+  script:
+    - echo "Pushing VS Code extension Docker image..."
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+    - docker push rechain/ide-extension:latest
+  only:
+    - main
+
+docker-scan:
+  stage: docker-build
+  image: docker:stable
+  services:
+    - docker:dind
+  script:
+    - echo "Scanning Docker image for vulnerabilities..."
+    - docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy:latest image rechain/ide:latest
+  only:
+    - main
+
+docker-test:
+  stage: docker-build
+  image: docker:stable
+  services:
+    - docker:dind
+  script:
+    - echo "Testing Docker image..."
+    - docker run --rm rechain/ide:latest version
+  only:
+    - main

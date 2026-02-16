@@ -1,0 +1,52 @@
+# GitHub Branch Protection Workflow
+
+name: Branch Protection
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  branch-protection:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Check for direct commits to main
+        if: github.ref == 'refs/heads/main'
+        run: |
+          echo "Direct commits to main branch are not allowed"
+          exit 1
+
+      - name: Check for merge conflicts
+        run: |
+          echo "Checking for merge conflicts..."
+          if git merge --no-commit --no-ff origin/main; then
+            git merge --abort
+            echo "No merge conflicts detected"
+          else
+            echo "Merge conflicts detected"
+            exit 1
+          fi
+
+      - name: Check for required files
+        run: |
+          echo "Checking for required files..."
+          required_files=("README.md" "LICENSE" "CONTRIBUTING.md")
+          for file in "${required_files[@]}"; do
+            if [ ! -f "$file" ]; then
+              echo "Required file $file is missing"
+              exit 1
+            fi
+          done
+
+      - name: Check for forbidden files
+        run: |
+          echo "Checking for forbidden files..."
+          forbidden_files=(".env" "*.log" "*.tmp")
+          for pattern in "${forbidden_files[@]}"; do
+            if ls $pattern 1> /dev/null 2>&1; then
+              echo "Forbidden file pattern $pattern found"
+              exit 1
+            fi
+          done

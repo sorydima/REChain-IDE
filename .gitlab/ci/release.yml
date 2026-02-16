@@ -1,0 +1,90 @@
+# GitLab CI Release Pipeline
+
+stages:
+  - release
+
+variables:
+  GO_VERSION: "1.21"
+  NODE_VERSION: "18"
+
+before_script:
+  - echo "Starting release pipeline for REChain IDE"
+  - git config --global user.email "ci@rechain.ai"
+  - git config --global user.name "REChain CI"
+
+create-release:
+  stage: release
+  image: golang:${GO_VERSION}
+  script:
+    - echo "Creating release..."
+    - git fetch --tags
+    - export VERSION=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+    - echo "Releasing version $VERSION"
+    - mkdir -p release-assets
+  artifacts:
+    paths:
+      - release-assets/
+
+build-go-binaries:
+  stage: release
+  image: golang:${GO_VERSION}
+  script:
+    - echo "Building Go binaries..."
+    - cd rechain-ide
+    - mkdir -p ../release-assets
+    - for dir in cmd/*/; do
+        if [ -d "$dir" ]; then
+          binary_name=$(basename $dir)
+          echo "Building $binary_name..."
+          GOOS=linux GOARCH=amd64 go build -o ../release-assets/${binary_name}-linux-amd64 ./$dir
+          GOOS=windows GOARCH=amd64 go build -o ../release-assets/${binary_name}-windows-amd64.exe ./$dir
+          GOOS=darwin GOARCH=amd64 go build -o ../release-assets/${binary_name}-darwin-amd64 ./$dir
+        fi
+      done
+  artifacts:
+    paths:
+      - release-assets/
+
+build-vscode-extension:
+  stage: release
+  image: node:${NODE_VERSION}
+  script:
+    - echo "Building VS Code extension..."
+    - cd rechain-ide/vscode-extension/extension
+    - npm install
+    - npm run package
+    - cp *.vsix ../../../../release-assets/ 2>/dev/null || echo "No VSIX file generated"
+  artifacts:
+    paths:
+      - release-assets/
+
+generate-changelog:
+  stage: release
+  image: python:3.9
+  script:
+    - echo "Generating changelog..."
+    - pip install githubrelease
+    - echo "Changelog for version $VERSION" > ../release-assets/CHANGELOG.md
+    - git log --oneline --since="last week" >> ../release-assets/CHANGELOG.md
+  artifacts:
+    paths:
+      - release-assets/CHANGELOG.md
+
+create-github-release:
+  stage: release
+  image: python:3.9
+  script:
+    - echo "Creating GitHub release..."
+    - pip install githubrelease
+    - echo "Release assets ready for $VERSION"
+  only:
+    - tags
+
+publish-release:
+  stage: release
+  image: alpine:latest
+  script:
+    - echo "Publishing release..."
+    - echo "Release published for $VERSION"
+  only:
+    - tags

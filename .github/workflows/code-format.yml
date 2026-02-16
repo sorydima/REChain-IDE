@@ -1,0 +1,54 @@
+# GitHub Code Formatting Workflow
+
+name: Code Formatting
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  code-format:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.21'
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install gofumpt
+        run: go install mvdan.cc/gofumpt@latest
+
+      - name: Format Go code
+        run: |
+          cd rechain-ide
+          gofumpt -l -w .
+
+      - name: Install Prettier
+        run: npm install -g prettier
+
+      - name: Format TypeScript code
+        run: |
+          cd rechain-ide/vscode-extension/extension
+          prettier --write src/**/*.ts
+
+      - name: Check for changes
+        run: |
+          git diff --exit-code || echo "Code formatting changes detected"
+
+      - name: Commit formatted code
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "style: format code [skip ci]" || echo "No changes to commit"
+          git push origin main || echo "Failed to push changes"

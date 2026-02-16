@@ -1,0 +1,18 @@
+﻿REChain Quantum-CrossAI IDE Engine (logical view)
+
+[IDE Surfaces]
+  - VS Code Extension
+  - Cursor Integration
+       |
+       v
+[Orchestrator] <----> [RAG]
+  |   ^              (index/search)
+  |   |
+  v   |
+[Model Drivers] ----> [Kernel]
+  |                   (sandbox/policy)
+  v
+[Execution Hosts]
+
+[Web6-3D] consumes graph artifacts for visualization
+[Distributed Cache] shared by Orchestrator/RAG/Kernel

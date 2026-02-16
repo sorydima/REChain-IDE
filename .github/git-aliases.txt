@@ -1,0 +1,131 @@
+# Git Aliases for REChain IDE
+# Add these to your ~/.gitconfig file
+# Usage: Copy this content into [alias] section of ~/.gitconfig
+
+[alias]
+    # Shortcuts
+    st = status
+    co = checkout
+    br = branch
+    ci = commit
+    lg = log --oneline --graph --decorate --all
+    lga = log --oneline --graph --decorate --all --author-date-order
+    
+    # Commit shortcuts
+    amend = commit --amend --no-edit
+    amend-all = commit --amend
+    undo = reset HEAD~1 --mixed
+    unstage = reset HEAD --
+    
+    # Branch management
+    cb = checkout -b
+    db = branch -d
+    D = branch -D
+    brm = branch --merged
+    brnm = branch --no-merged
+    
+    # Log formatting
+    ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+    ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+    ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+    hist = log --pretty=format:"%h %ad | %s%d [%an]" --graph --date=short
+    
+    # Finding things
+    find = log --all --oneline --source --remotes --grep
+    who = log --all --oneline --source --remotes --author
+    
+    # Stash shortcuts
+    save = stash push -m
+    pop = stash pop
+    drop = stash drop
+    list = stash list
+    
+    # Pull/Push with rebase
+    pr = pull --rebase
+    pom = push origin main
+    pod = push origin develop
+    
+    # Diff shortcuts
+    diffw = diff --word-diff
+    diffc = diff --cached
+    
+    # Rebase shortcuts
+    rb = rebase
+    rbc = rebase --continue
+    rba = rebase --abort
+    rbs = rebase --skip
+    
+    # Cherry-pick shortcuts
+    cp = cherry-pick
+    cpa = cherry-pick --abort
+    cpc = cherry-pick --continue
+    
+    # Reset shortcuts
+    rh = reset --hard
+    rs = reset --soft
+    
+    # Fetch shortcuts
+    fo = fetch origin
+    fa = fetch --all --prune
+    
+    # Remote management
+    rv = remote -v
+    ru = remote update
+    rp = remote prune
+    
+    # Tagging
+    tagl = tag -l
+    tags = tag -l -n1
+    
+    # Cleanup
+    cleanup = "!git branch --merged | grep -v '^\\*' | xargs -n 1 git branch -d"
+    clean-branches = "!git branch --merged | grep -v '^\\*' | grep -v 'main\\|develop' | xargs -n 1 git branch -d"
+    prune-all = "!git remote | xargs -n 1 git remote prune"
+    
+    # Current branch info
+    current = rev-parse --abbrev-ref HEAD
+    upstream = rev-parse --abbrev-ref --symbolic-full-name @{u}
+    
+    # Repo info
+    root = rev-parse --show-toplevel
+    size = count-objects -vH
+    
+    # Interactive
+    ri = rebase -i
+    rc = rebase --continue
+    
+    # Safe force push
+    pushf = push --force-with-lease
+    
+    # Better clone
+    clonecd = "!git clone $@ && cd "${1##*/}""
+    
+    # Worktree shortcuts
+    wtl = worktree list
+    wta = worktree add
+    wtrm = worktree remove
+    
+    # Useful combinations
+    refresh = "!git fetch origin && git status"
+    sync = "!git checkout main && git pull origin main && git checkout develop && git pull origin develop"
+    update = "!git pull --rebase origin $(git current)"
+    
+    # Conventional commit helpers
+    feat = "!git commit -m \"feat: $1\""
+    fix = "!git commit -m \"fix: $1\""
+    docs = "!git commit -m \"docs: $1\""
+    chore = "!git commit -m \"chore: $1\""
+    test = "!git commit -m \"test: $1\""
+    refactor = "!git commit -m \"refactor: $1\""
+    perf = "!git commit -m \"perf: $1\""
+    ci = "!git commit -m \"ci: $1\""
+    build = "!git commit -m \"build: $1\""
+    style = "!git commit -m \"style: $1\""
+    revert = "!git commit -m \"revert: $1\""
+
+# Example .gitconfig structure:
+# [user]
+#     name = Your Name
+#     email = your.email@example.com
+# [alias]
+#     (paste aliases above here)

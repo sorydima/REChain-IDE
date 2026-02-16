@@ -1,0 +1,87 @@
+# GitLab CI Security Pipeline
+
+stages:
+  - security
+
+variables:
+  GO_VERSION: "1.21"
+  NODE_VERSION: "18"
+
+before_script:
+  - echo "Starting security pipeline for REChain IDE"
+  - git config --global user.email "ci@rechain.ai"
+  - git config --global user.name "REChain CI"
+
+go-security:
+  stage: security
+  image: golang:${GO_VERSION}
+  script:
+    - echo "Running Go security checks..."
+    - go install github.com/securego/gosec/v2/cmd/gosec@latest
+    - cd rechain-ide
+    - gosec ./...
+
+npm-audit:
+  stage: security
+  image: node:${NODE_VERSION}
+  script:
+    - echo "Running npm audit..."
+    - cd rechain-ide/vscode-extension/extension
+    - npm audit
+
+sast:
+  stage: security
+  image: python:3.9
+  script:
+    - echo "Running SAST scan..."
+    - pip install bandit
+    - bandit -r rechain-ide/ -f json -o bandit-report.json || true
+  artifacts:
+    reports:
+      sast: bandit-report.json
+
+secret-detection:
+  stage: security
+  image: python:3.9
+  script:
+    - echo "Running secret detection..."
+    - pip install git-secrets
+    - git secrets --register-aws
+    - git secrets --scan
+
+dependency-scan:
+  stage: security
+  image: python:3.9
+  script:
+    - echo "Running dependency security scan..."
+    - pip install safety
+    - cd rechain-ide
+    - find . -name "requirements.txt" -exec safety check -r {} \;
+
+container-scan:
+  stage: security
+  image: docker:stable
+  services:
+    - docker:dind
+  script:
+    - echo "Running container security scan..."
+    - docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy:latest image rechain-ide:latest
+
+license-check:
+  stage: security
+  image: python:3.9
+  script:
+    - echo "Running license compliance check..."
+    - pip install liccheck
+    - liccheck -s requirements.txt
+
+security-report:
+  stage: security
+  image: alpine:latest
+  script:
+    - echo "Generating security report..."
+    - apk add --no-cache curl
+    - echo "Security scan completed" > security-report.txt
+  artifacts:
+    reports:
+      security: security-report.txt

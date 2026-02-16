@@ -1,0 +1,95 @@
+# GitLab configuration for REChain IDE project
+
+# Project settings
+project:
+  name: rechain-ide
+  description: REChain Quantum-CrossAI IDE Engine
+  visibility: public
+  merge_requests_enabled: true
+  issues_enabled: true
+  wiki_enabled: false
+  snippets_enabled: true
+  container_registry_enabled: true
+  shared_runners_enabled: true
+  only_allow_merge_if_pipeline_succeeds: true
+  only_allow_merge_if_all_discussions_are_resolved: true
+  remove_source_branch_after_merge: true
+  printing_merge_request_link_enabled: true
+  merge_method: merge
+  autoclose_referenced_issues: true
+  suggestion_commit_message: "Add suggestion from code review"
+
+# CI/CD settings
+ci_cd:
+  default_branch: main
+  auto_devops_enabled: false
+  jobs_enabled: true
+  shared_runners_enabled: true
+  runner_token_expiration_interval: 0
+  group_runners_enabled: true
+
+# Merge request settings
+merge_requests:
+  approvals:
+    approvals_before_merge: 1
+    reset_approvals_on_push: true
+    disable_overriding_approvers_per_merge_request: false
+    merge_requests_author_approval: false
+    merge_requests_disable_committers_approval: true
+  merge_conflicts: true
+  merge_pipelines_enabled: true
+  merge_trains_enabled: true
+
+# Issue settings
+issues:
+  issues_enabled: true
+  issue_closing_pattern: "((Closes|Fixes) #\\d+)"
+  default_assignee: ""
+  default_assignee_type: "none"
+
+# Wiki settings
+wiki:
+  wiki_enabled: false
+
+# Snippets settings
+snippets:
+  snippets_enabled: true
+
+# Container registry settings
+container_registry:
+  container_registry_enabled: true
+  container_registry_on_root_namespace: false
+
+# Package settings
+packages:
+  packages_enabled: true
+
+# Analytics settings
+analytics:
+  analytics_enabled: true
+
+# Pages settings
+pages:
+  pages_enabled: true
+  pages_access_control: false
+
+# Auto DevOps settings
+auto_devops:
+  enabled: false
+  deploy_strategy: continuous
+
+# Repository settings
+repository:
+  archive_timeout: 300
+  size_limit: 10737418240
+  import_sources:
+    - "git"
+    - "github"
+    - "bitbucket"
+  push_rule:
+    author_email_regex: ""
+    branch_name_regex: ""
+    commit_message_regex: ""
+    commit_message_negative_regex: ""
+    file_name_regex: ""
+    max_file_size: 0

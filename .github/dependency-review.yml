@@ -1,0 +1,41 @@
+# Dependency Review Configuration
+# https://docs.github.com/en/code-security/supply-chain-security/understanding-your-software-supply-chain/about-dependency-review
+
+# Fail the workflow if vulnerabilities are found
+fail-on-severity: moderate
+
+# Allow specific licenses
+allow-licenses:
+  - MIT
+  - Apache-2.0
+  - BSD-2-Clause
+  - BSD-3-Clause
+  - ISC
+  - MPL-2.0
+  - Unlicense
+
+# Deny specific licenses
+deny-licenses:
+  - GPL-2.0
+  - GPL-3.0
+  - AGPL-3.0
+
+# Allow specific dependencies (format: owner/repo@version or go:module@version)
+allow-dependencies:
+  - go:golang.org/x/*@*
+
+# Deny specific dependencies
+deny-dependencies:
+  - go:github.com/banned/package@*
+
+# Comment on pull requests with review summary
+comment-summary-in-pr: true
+
+# Additional vulnerability filters
+vulnerability-check: true
+license-check: true
+
+# Configuration for Go modules
+ecosystems:
+  - go
+  - npm

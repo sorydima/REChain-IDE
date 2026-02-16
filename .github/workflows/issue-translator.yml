@@ -1,0 +1,54 @@
+name: Issue Translator
+
+on:
+  issue_comment:
+    types: [created]
+  issues:
+    types: [opened]
+
+jobs:
+  translate:
+    runs-on: ubuntu-latest
+    if: ${{ !contains(github.event.issue.labels.*.name, 'translated') }}
+    steps:
+      - name: Detect language
+        uses: actions/github-script@v7
+        id: detect
+        with:
+          script: |
+            const text = context.payload.comment?.body || 
+                          context.payload.issue?.body || '';
+            
+            // Simple language detection based on common words
+            const isEnglish = /^[\x00-\x7F]*$/.test(text) && 
+                              /\b(the|is|and|to|of|a|in|that|have|I|it|for|not|on|with|he|as|you|do|at|this|but|his|by|from|they|we|say|her|she|or|an|will|my|one|all|would|there|their|what|so|up|out|if|about|who|get|which|go|me|when|make|can|like|time|no|just|him|know|take|people|into|year|your|good|some|could|them|see|other|than|then|now|look|only|come|its|over|think|also|back|after|use|two|how|our|work|first|well|way|even|new|want|because|any|these|give|day|most|us)\b/gi.test(text);
+            
+            return { isEnglish };
+
+      - name: Add translation label
+        if: steps.detect.outputs.isEnglish == 'false'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.addLabels({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: ['needs-translation']
+            });
+
+      - name: Comment translation notice
+        if: steps.detect.outputs.isEnglish == 'false'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const translations = {
+              'needs-translation': 'This issue/comment appears to be in a non-English language. If possible, please use English for better community support. Maintainers may provide translation assistance.'
+            };
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: translations['needs-translation']
+            });
