@@ -26,7 +26,7 @@ jobs:
           echo "- Last Commit: ${{ github.event.repository.pushed_at }}" >> status-report.md
 
       - name: Create Issue
-        uses: actions/github-script@v6
+        uses: actions/github-script@v8
         with:
           script: |
             const fs = require('fs');

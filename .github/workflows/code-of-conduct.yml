@@ -23,7 +23,7 @@ jobs:
           replacement-strategy: Redaction
 
       - name: Check for spam patterns
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const body = context.payload.comment?.body || 
