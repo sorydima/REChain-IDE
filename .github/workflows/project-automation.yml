@@ -26,7 +26,7 @@ jobs:
 
       - name: Auto-assign issues
         if: github.event_name == 'issues' && github.event.action == 'opened'
-        uses: pozetroninc/github-action-get-latest-release@v0.7.0
+        uses: pozetroninc/github-action-get-latest-release@v0.8.0
         continue-on-error: true
         with:
           owner: ${{ github.repository_owner }}
