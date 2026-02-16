@@ -1,4 +1,4 @@
-﻿{
+{
   "name": "rechain-ide",
   "displayName": "REChain IDE",
   "description": "REChain Quantum-CrossAI IDE Engine MVP",
@@ -29,6 +29,6 @@
   "devDependencies": {
     "typescript": "^5.3.3",
     "@types/vscode": "^1.85.0",
-    "@types/node": "^20.10.4"
+    "@types/node": "^25.2.3"
   }
 }
